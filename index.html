@@ -117,15 +117,7 @@ body.desktop .wx-temp-lo { font-size: 13px; margin-top: 2px; }
 body.desktop .wx-desc { font-size: 11px; margin-top: 4px; }
 body.desktop .wx-rain { font-size: 11px; margin-top: 3px; }
 body.desktop .weather-loading { padding: 2rem 0; }
-body.desktop .news-layer { border-radius: 16px; padding: 1.1rem 1.25rem; }
-body.desktop .news-header { font-size: 12px; margin-bottom: 12px; }
-body.desktop .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-body.desktop .news-card { border-radius: 10px; padding: 11px 14px; transition: background 0.12s; }
-body.desktop .news-card:hover { background: rgba(255,255,255,0.07); }
-body.desktop .news-source { font-size: 11px; margin-bottom: 4px; }
-body.desktop .news-title  { font-size: 13px; }
-body.desktop .news-time   { font-size: 11px; margin-top: 5px; }
-body.desktop .news-loading { padding: 1.5rem 0; }
+
 body.desktop .modal-overlay { align-items: center; justify-content: center; }
 body.desktop .modal-box { background: #1a1d26; border-radius: 18px; padding: 1.75rem; width: 360px; border: 1px solid #2e3245; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
 body.desktop .modal-box h3 { font-size: 15px; font-weight: 700; margin-bottom: 1.25rem; color: #e8eaf0; }
@@ -193,15 +185,7 @@ body.mobile .wx-temp-lo { font-size: 10px; margin-top: 1px; }
 body.mobile .wx-desc { font-size: 9px; margin-top: 2px; }
 body.mobile .wx-rain { font-size: 9px; margin-top: 2px; }
 body.mobile .weather-loading { padding: 1.5rem 0; }
-body.mobile .news-layer { border-radius: 16px; padding: 14px; }
-body.mobile .news-header { font-size: 11px; margin-bottom: 10px; }
-body.mobile .news-list { display: flex; flex-direction: column; gap: 8px; }
-body.mobile .news-card { border-radius: 10px; padding: 10px 12px; }
-body.mobile .news-card:active { background: rgba(255,255,255,0.07); }
-body.mobile .news-source { font-size: 10px; margin-bottom: 3px; }
-body.mobile .news-title  { font-size: 13px; }
-body.mobile .news-time   { font-size: 10px; margin-top: 4px; }
-body.mobile .news-loading { padding: 1rem 0; }
+
 body.mobile .modal-overlay { align-items: flex-end; justify-content: center; }
 body.mobile .modal-box { background: #1a1d26; border-radius: 20px 20px 0 0; padding: 20px 20px calc(env(safe-area-inset-bottom,0px) + 20px); width: 100%; border-top: 1px solid #2e3245; }
 body.mobile .modal-handle { width: 36px; height: 4px; background: #333; border-radius: 2px; margin: 0 auto 16px; }
@@ -277,10 +261,7 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
   <!-- 날씨 + 뉴스 -->
   <div class="bottom-col">
     <div class="weather-layer panel"><div id="weather-content"><div class="weather-loading">📍 위치 정보 가져오는 중...</div></div></div>
-    <div class="news-layer panel">
-      <div class="news-header">📰 네이버 뉴스</div>
-      <div id="news-content"><div class="news-loading">뉴스 불러오는 중...</div></div>
-    </div>
+
   </div>
 </div>
 
@@ -493,7 +474,7 @@ async function loadNewsFallback(wrap){
   }catch(e){ wrap.innerHTML='<div class="news-loading">뉴스를 불러오지 못했습니다.</div>'; }
 }
 
-renderShortcuts(); loadWeather(); loadNews();
+renderShortcuts(); loadWeather();
 </script>
 </body>
 </html>
