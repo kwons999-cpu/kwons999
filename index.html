@@ -16,7 +16,7 @@ html, body { height: 100%; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0f14; color: #e8eaf0; min-height: 100vh; }
 
 /* ── 공통 ── */
-.panel { background: rgba(22,25,38,0.97); border: 1px solid rgba(255,255,255,0.07); }
+.panel { background: transparent; border: none; }
 .clock-wrap { display: flex; align-items: baseline; justify-content: center; flex-wrap: nowrap; gap: 12px; white-space: nowrap; overflow: hidden; }
 #clock-date { font-weight: 300; color: #b0b8d0; flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 #clock-time { font-family: 'Exo 2', sans-serif; font-weight: 200; color: #fff; display: flex; align-items: center; flex-shrink: 0; }
@@ -60,13 +60,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .modal-actions button { border: 1px solid #2e3245; background: #22253a; cursor: pointer; font-weight: 600; color: #aab0c8; }
 .modal-actions .btn-confirm { background: #4285F4; color: #fff; border-color: #4285F4; }
 
-#toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: rgba(30,33,50,0.97); color: #c0c8e0; border: 1px solid rgba(255,255,255,0.12); z-index: 999; white-space: nowrap; transition: opacity 0.3s; opacity: 0; pointer-events: none; padding: 9px 18px; border-radius: 10px; font-size: 12px; }
+.drag-over .shortcut-icon { box-shadow: 0 0 0 2.5px #4285F4 !important; }
+.drag-active .shortcut-icon { opacity: 0.5; transform: scale(0.92); } bottom: 32px; left: 50%; transform: translateX(-50%); background: rgba(30,33,50,0.97); color: #c0c8e0; border: 1px solid rgba(255,255,255,0.12); z-index: 999; white-space: nowrap; transition: opacity 0.3s; opacity: 0; pointer-events: none; padding: 9px 18px; border-radius: 10px; font-size: 12px; }
 
 /* ════════════════════════════════
    데스크톱
 ════════════════════════════════ */
 body.desktop .gateway { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
-body.desktop .clock-layer { text-align: center; margin-bottom: 1.8rem; }
+body.desktop .clock-layer { text-align: center; margin-bottom: 1.8rem; margin-top: 2rem; }
 body.desktop #clock-date { font-size: clamp(14px, 1.6vw, 22px); letter-spacing: 1px; }
 body.desktop #clock-time { font-size: clamp(28px, 3.8vw, 52px); gap: 0; }
 
@@ -104,11 +105,9 @@ body.desktop .shortcut-item:hover .del-btn { display: flex; }
 body.desktop .shortcut-add-plus { font-size: 24px; color: #555; }
 
 body.desktop .bottom-col { display: flex; flex-direction: column; gap: 16px; }
-body.desktop .weather-layer { border-radius: 16px; padding: 1.1rem 1.25rem; }
-body.desktop .weather-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
-body.desktop .weather-scroll::-webkit-scrollbar { height: 4px; }
-body.desktop .weather-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-body.desktop .wx-card { border-radius: 14px; padding: 12px 10px 10px; min-width: 90px; flex: 1; }
+body.desktop .weather-layer { border-radius: 16px; padding: 1.1rem 0; max-width: 100%; overflow: hidden; }
+body.desktop .weather-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; max-width: 100%; justify-content: center; }
+body.desktop .wx-card { border-radius: 14px; padding: 12px 6px 10px; min-width: 63px; max-width: 98px; flex: 1; }
 body.desktop .wx-label { font-size: 12px; margin-bottom: 1px; }
 body.desktop .wx-date  { font-size: 11px; margin-bottom: 8px; }
 body.desktop .wx-emoji { font-size: 38px; line-height: 1; margin-bottom: 8px; }
@@ -130,7 +129,7 @@ body.desktop .modal-handle { display: none; }
    모바일
 ════════════════════════════════ */
 body.mobile .gateway { max-width: 480px; margin: 0 auto; padding: env(safe-area-inset-top,16px) 16px calc(env(safe-area-inset-bottom,0px) + 80px); }
-body.mobile .clock-layer { text-align: center; padding: 20px 0 14px; }
+body.mobile .clock-layer { text-align: center; padding: 20px 0 14px; margin-top: 1.5rem; }
 body.mobile #clock-date { font-size: clamp(12px, 3.5vw, 15px); letter-spacing: 0.3px; }
 body.mobile #clock-time { font-size: clamp(26px, 11vw, 46px); gap: 0; line-height: 1; }
 
@@ -260,7 +259,10 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
 
   <!-- 날씨 + 뉴스 -->
   <div class="bottom-col">
-    <div class="weather-layer panel"><div id="weather-content"><div class="weather-loading">📍 위치 정보 가져오는 중...</div></div></div>
+    <div class="weather-layer panel" style="position:relative;">
+      <button id="location-btn" onclick="changeLocation()" style="position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#8890aa;font-size:11px;padding:3px 9px;border-radius:20px;cursor:pointer;z-index:2;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.13)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">📍 <span id="location-label">서울특별시</span></button>
+      <div id="weather-content"><div class="weather-loading">날씨 불러오는 중...</div></div>
+    </div>
 
   </div>
 </div>
@@ -324,25 +326,58 @@ const DEFAULT_SHORTCUTS = [
 
 let shortcuts = JSON.parse(localStorage.getItem('gw_u2_sc') || 'null') || DEFAULT_SHORTCUTS;
 let editMode = false;
+let dragSrc = null, dragMoved = false;
+let touchStartEl = null, touchStartIdx = null, touchTimer = null;
 function saveShortcuts(){ localStorage.setItem('gw_u2_sc', JSON.stringify(shortcuts)); }
 
 function renderShortcuts(){
   const grid = document.getElementById('shortcuts-grid');
   grid.innerHTML = '';
+  const inEdit = isMobile ? editMode : true; // 데스크톱은 항상 드래그 가능
   if(isMobile){ editMode ? grid.classList.add('edit-mode') : grid.classList.remove('edit-mode'); }
+
   shortcuts.forEach((s,i)=>{
     const el = document.createElement('div');
     el.className = 'shortcut-item';
+    el.dataset.index = i;
+    el.draggable = true;
     const ih = s.iconKey && SITE_ICONS[s.iconKey] ? SITE_ICONS[s.iconKey]
       : `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#22253a"/><text x="25" y="33" font-size="22" text-anchor="middle">${s.emoji||'🌐'}</text></svg>`;
     el.innerHTML = `<div class="shortcut-wrap"><div class="shortcut-icon">${ih}</div><button class="del-btn" aria-label="${s.name} 삭제">✕</button></div><div class="shortcut-label">${s.name}</div>`;
-    el.querySelector('.shortcut-icon').addEventListener('click', ()=>{ if(isMobile && editMode) return; window.open(s.url,'_blank','noopener'); });
+
+    // 클릭 (드래그와 구분)
+    el.querySelector('.shortcut-icon').addEventListener('click', ()=>{ if(isMobile && editMode) return; if(dragMoved) return; window.open(s.url,'_blank','noopener'); });
     el.querySelector('.del-btn').addEventListener('click', e=>{
       e.stopPropagation();
       if(confirm(`"${s.name}" 삭제할까요?`)){ shortcuts.splice(i,1); saveShortcuts(); renderShortcuts(); }
     });
+
+    // 데스크톱 드래그
+    el.addEventListener('dragstart', e=>{ if(isMobile) return; dragSrc=i; el.style.opacity='0.4'; e.dataTransfer.effectAllowed='move'; });
+    el.addEventListener('dragend',   ()=>{ if(isMobile) return; el.style.opacity='1'; document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over')); });
+    el.addEventListener('dragover',  e=>{ if(isMobile) return; e.preventDefault(); e.dataTransfer.dropEffect='move'; el.classList.add('drag-over'); });
+    el.addEventListener('dragleave', ()=>{ if(isMobile) return; el.classList.remove('drag-over'); });
+    el.addEventListener('drop', e=>{ if(isMobile) return; e.preventDefault(); el.classList.remove('drag-over'); if(dragSrc===i) return; const tmp=shortcuts[dragSrc]; shortcuts[dragSrc]=shortcuts[i]; shortcuts[i]=tmp; saveShortcuts(); renderShortcuts(); });
+
+    // 모바일 터치 드래그
+    el.addEventListener('touchstart', e=>{ if(!editMode) return; touchStartEl=el; touchStartIdx=i; dragMoved=false; touchTimer=setTimeout(()=>{ el.classList.add('drag-active'); },150); }, {passive:true});
+    el.addEventListener('touchmove',  e=>{ if(!editMode||!touchStartEl) return; dragMoved=true; clearTimeout(touchTimer); e.preventDefault();
+      const t=e.touches[0]; const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');
+      document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));
+      if(target && target!==touchStartEl && target.dataset.index!==undefined) target.classList.add('drag-over');
+    }, {passive:false});
+    el.addEventListener('touchend', e=>{ if(!editMode) return; clearTimeout(touchTimer); touchStartEl?.classList.remove('drag-active');
+      const t=e.changedTouches[0]; const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');
+      document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));
+      if(target && target.dataset.index!==undefined && target.dataset.index!=touchStartIdx){
+        const ti=parseInt(target.dataset.index); const tmp=shortcuts[touchStartIdx]; shortcuts[touchStartIdx]=shortcuts[ti]; shortcuts[ti]=tmp; saveShortcuts(); renderShortcuts();
+      }
+      touchStartEl=null; touchStartIdx=null;
+    });
+
     grid.appendChild(el);
   });
+
   const add = document.createElement('div');
   add.className = 'shortcut-item shortcut-add';
   add.innerHTML = `<div class="shortcut-wrap"><div class="shortcut-icon"><span class="shortcut-add-plus">＋</span></div></div><div class="shortcut-label">추가</div>`;
@@ -411,24 +446,94 @@ document.getElementById('btn-confirm-add').addEventListener('click', ()=>{
 // ── 날씨 ─────────────────────────────────────
 const WX_ICONS={0:'☀️',1:'🌤',2:'⛅',3:'🌥',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',85:'🌨',86:'❄️',95:'⛈',96:'⛈',99:'⛈'};
 const WX_DESC={0:'맑음',1:'대체로 맑음',2:'구름 조금',3:'흐림',45:'안개',48:'짙은 안개',51:'이슬비',53:'이슬비',55:'이슬비',61:'약한 비',63:'비',65:'강한 비',71:'약한 눈',73:'눈',75:'강한 눈',80:'소나기',82:'폭우',95:'뇌우',99:'뇌우'};
-function loadWeather(){
+
+// 저장된 위치 or 기본값 서울
+let currentLocation = JSON.parse(localStorage.getItem('gw_location') || 'null') || {name:'서울특별시', lat:37.5665, lon:126.9780};
+
+function saveLocation(loc){ localStorage.setItem('gw_location', JSON.stringify(loc)); }
+
+function changeLocation(){
+  const input = prompt('도시명을 입력하세요\n(예: 부산광역시, 제주시, 수원시)', currentLocation.name);
+  if(!input || !input.trim()) return;
+  const query = input.trim();
+  // Nominatim으로 좌표 검색
+  fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&accept-language=ko`)
+    .then(r=>r.json())
+    .then(data=>{
+      if(!data||!data.length){ alert(`"${query}" 위치를 찾을 수 없습니다.`); return; }
+      const {lat, lon, display_name} = data[0];
+      // 짧은 이름 추출
+      const shortName = display_name.split(',')[0].trim();
+      currentLocation = {name: shortName, lat: parseFloat(lat), lon: parseFloat(lon)};
+      saveLocation(currentLocation);
+      document.getElementById('location-label').textContent = shortName;
+      loadWeather();
+    })
+    .catch(()=>{ alert('위치 검색에 실패했습니다. 다시 시도해주세요.'); });
+}
+
+async function loadWeather(){
   const el=document.getElementById('weather-content');
-  if(!navigator.geolocation){ el.innerHTML='<div class="weather-loading">위치 서비스 미지원</div>'; return; }
-  navigator.geolocation.getCurrentPosition(async pos=>{
-    const {latitude:lat,longitude:lon}=pos.coords;
-    try{
-      let city='현재 위치';
-      try{ const gr=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`); const gd=await gr.json(); city=gd.address.city||gd.address.town||gd.address.county||'현재 위치'; }catch(e){}
-      const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,apparent_temperature&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=8`);
-      const d=await res.json(); const c=d.current,dl=d.daily; const now=new Date();
-      let html=`<div class="weather-scroll"><div class="wx-card today"><div class="wx-label">오늘</div><div class="wx-date">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div><div class="wx-emoji">${WX_ICONS[c.weathercode]||'🌡'}</div><div class="wx-temp-hi">${Math.round(c.temperature_2m)}°C</div><div class="wx-temp-lo">체감 ${Math.round(c.apparent_temperature)}°</div><div class="wx-desc">${WX_DESC[c.weathercode]||''}</div><div class="wx-rain">📍 ${city}</div></div>`;
-      for(let i=1;i<8;i++){
-        const dt=new Date(dl.time[i]); const lbl=i===1?'내일':DAY_KR[dt.getDay()]; const wc=dl.weathercode[i];
-        html+=`<div class="wx-card"><div class="wx-label">${lbl}</div><div class="wx-date">${dt.getMonth()+1}/${dt.getDate()}</div><div class="wx-emoji">${WX_ICONS[wc]||'🌡'}</div><div class="wx-temp-hi">${Math.round(dl.temperature_2m_max[i])}°</div><div class="wx-temp-lo">${Math.round(dl.temperature_2m_min[i])}°</div><div class="wx-desc">${WX_DESC[wc]||''}</div><div class="wx-rain">💧${dl.precipitation_probability_max[i]}%</div></div>`;
-      }
-      html+=`</div>`; el.innerHTML=html;
-    }catch(e){ el.innerHTML='<div class="weather-loading">날씨를 불러오지 못했습니다.</div>'; }
-  },()=>{ el.innerHTML='<div class="weather-loading">위치 권한이 필요합니다.<br><small>브라우저에서 위치 접근을 허용해주세요.</small></div>'; });
+  el.innerHTML='<div class="weather-loading">날씨 불러오는 중...</div>';
+  document.getElementById('location-label').textContent = currentLocation.name;
+  try{
+    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=8`);
+    const d=await res.json(); const c=d.current, dl=d.daily, hl=d.hourly; const now=new Date();
+
+    // 오늘 시간별 기온 (현재 시각 기준 앞뒤 포함 6개 포인트)
+    const nowHour = now.getHours();
+    const todayStr = now.toISOString().slice(0,10);
+    const hourlyTemps = [];
+    for(let h=0; h<24; h+=2){
+      const idx = hl.time.findIndex(t => t === `${todayStr}T${String(h).padStart(2,'0')}:00`);
+      if(idx !== -1) hourlyTemps.push({hour: h, temp: Math.round(hl.temperature_2m[idx])});
+    }
+    // 현재 시각 기준 ±4시간 범위 6포인트
+    const relevantHours = hourlyTemps.filter(p => p.hour >= Math.max(0, nowHour-4) && p.hour <= Math.min(23, nowHour+8)).slice(0,6);
+
+    // SVG 라인 차트 생성
+    function makeTempChart(points){
+      if(!points.length) return '';
+      const W=100, H=48, pad=10;
+      const temps = points.map(p=>p.temp);
+      const mn=Math.min(...temps), mx=Math.max(...temps);
+      const range = mx-mn || 1;
+      const xs = points.map((_,i)=> pad + i*(W-pad*2)/(points.length-1||1));
+      const ys = points.map(p=> H-8 - ((p.temp-mn)/range)*(H-20));
+      const pathD = xs.map((x,i)=>`${i===0?'M':'L'}${x},${ys[i]}`).join(' ');
+      const dots = points.map((p,i)=>`
+        <circle cx="${xs[i]}" cy="${ys[i]}" r="3.5" fill="#f0c060"/>
+        <text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="10" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text>
+        <text x="${xs[i]}" y="${H+4}" text-anchor="middle" font-size="9" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>
+      `).join('');
+      return `<svg viewBox="0 0 ${W} ${H+8}" width="100%" style="display:block;margin-top:6px;">
+        <polyline points="${xs.map((x,i)=>`${x},${ys[i]}`).join(' ')}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5" stroke-linejoin="round"/>
+        ${dots}
+      </svg>`;
+    }
+
+    let html=`<div class="weather-scroll">
+      <div class="wx-card today" style="min-width:180px;max-width:220px;">
+        <div style="display:flex;align-items:center;gap:14px;width:100%;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;">
+            <div class="wx-label">오늘</div>
+            <div class="wx-date">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
+            <div class="wx-emoji" style="font-size:36px;margin:4px 0;">${WX_ICONS[c.weathercode]||'🌡'}</div>
+            <div class="wx-temp-hi" style="font-size:20px;">${Math.round(c.temperature_2m)}°C</div>
+            <div class="wx-desc" style="font-size:11px;">${WX_DESC[c.weathercode]||''}</div>
+            <div class="wx-temp-lo" style="font-size:11px;margin-top:2px;">체감 ${Math.round(c.apparent_temperature)}°</div>
+          </div>
+          <div style="flex:1;min-width:0;">
+            ${makeTempChart(relevantHours)}
+          </div>
+        </div>
+      </div>`;
+    for(let i=1;i<8;i++){
+      const dt=new Date(dl.time[i]); const lbl=i===1?'내일':DAY_KR[dt.getDay()]; const wc=dl.weathercode[i];
+      html+=`<div class="wx-card"><div class="wx-label">${lbl}</div><div class="wx-date">${dt.getMonth()+1}/${dt.getDate()}</div><div class="wx-emoji">${WX_ICONS[wc]||'🌡'}</div><div class="wx-temp-hi">${Math.round(dl.temperature_2m_max[i])}°</div><div class="wx-temp-lo">${Math.round(dl.temperature_2m_min[i])}°</div><div class="wx-desc">${WX_DESC[wc]||''}</div><div class="wx-rain">💧${dl.precipitation_probability_max[i]}%</div></div>`;
+    }
+    html+=`</div>`; el.innerHTML=html;
+  }catch(e){ el.innerHTML='<div class="weather-loading">날씨를 불러오지 못했습니다.</div>'; }
 }
 
 // ── 뉴스 ─────────────────────────────────────
