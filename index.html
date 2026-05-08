@@ -99,7 +99,7 @@ body.desktop .weather-layer{padding:1.1rem 0;position:relative;}
 body.desktop .weather-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;max-width:100%;justify-content:center;}
 body.desktop .weather-scroll::-webkit-scrollbar{height:4px;}
 body.desktop .weather-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px;}
-body.desktop .wx-card{border-radius:14px;padding:12px 6px 10px;min-width:63px;max-width:98px;flex:1;}
+body.desktop .wx-card{border-radius:14px;padding:12px 6px 10px;min-width:57px;max-width:88px;flex:1;}
 body.desktop .wx-card.today{min-width:180px;max-width:220px;}
 body.desktop .wx-label{font-size:12px;margin-bottom:1px;}
 body.desktop .wx-date{font-size:11px;margin-bottom:8px;}
@@ -288,27 +288,29 @@ const NAVER_CLIENT_SECRET = 'YOUR_NAVER_CLIENT_SECRET';
 const SITE_ICONS = {
   naver:   `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><text x="25" y="35" font-size="28" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">N</text></svg>`,
   google:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 22v6h8.5c-.4 2-1.5 3.7-3.1 4.8l4.9 3.8C38.3 33.3 40 29.4 40 25c0-1-.1-2-.3-3H25z" fill="#4285F4"/><path d="M13.6 29.8A14 14 0 0125 11.3c3.3 0 6.3 1.2 8.6 3.1L38 9.9C34.4 6.7 30 4.8 25 4.8 16 4.8 8.4 10.5 5.6 18.6l8 6.2z" fill="#34A853"/><path d="M5.6 18.6A14 14 0 005 25c0 2.3.4 4.5 1.1 6.5l7.8-6.1-.4-1.4-8-5.4z" fill="#FBBC05"/><path d="M25 39c4.9 0 9-1.6 12-4.4l-4.9-3.8c-2 1.3-4.5 2.1-7.1 2.1-5.3 0-9.9-3.6-11.5-8.5l-7.9 6.1C8.4 38.4 16 43.2 25 43.2z" fill="#EA4335"/></svg>`,
-  youtube: `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#FF0000"/><path d="M38 25s0-4.2-.5-6.2c-.3-1.1-1.1-2-2.2-2.3C33.2 16 25 16 25 16s-8.2 0-10.3.5c-1.1.3-1.9 1.2-2.2 2.3C12 20.8 12 25 12 25s0 4.2.5 6.2c.3 1.1 1.1 2 2.2 2.3C16.8 34 25 34 25 34s8.2 0 10.3-.5c1.1-.3 1.9-1.2 2.2-2.3C38 29.2 38 25 38 25z" fill="white"/><polygon points="22,21 22,29 30,25" fill="#FF0000"/></svg>`,
-  kakao:   `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#FEE500"/><path d="M25 13c-7.7 0-14 4.7-14 10.4 0 3.7 2.5 7 6.2 8.9l-1.6 5.7 6.6-4.3c.9.1 1.8.2 2.8.2 7.7 0 14-4.7 14-10.5S32.7 13 25 13z" fill="#3C1E1E"/></svg>`,
-  coupang: `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#E2124B"/><text x="25" y="33" font-size="10" font-weight="800" font-family="Arial,sans-serif" text-anchor="middle" fill="white">COUPANG</text></svg>`,
-  cafe:    `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><text x="25" y="34" font-size="12" font-weight="800" font-family="Arial,sans-serif" text-anchor="middle" fill="white">CAFE</text></svg>`,
-  weather: `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#1d4ed8"/><text x="25" y="33" font-size="28" text-anchor="middle">⛅</text></svg>`,
-  map:     `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#10B981"/><path d="M25 10c-5.5 0-10 4.5-10 10 0 7.5 10 20 10 20s10-12.5 10-20c0-5.5-4.5-10-10-10zm0 13.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z" fill="white"/></svg>`,
-  papago:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#00C73C"/><text x="14" y="30" font-size="15" font-weight="700" font-family="Arial,sans-serif" fill="white">A</text><text x="27" y="35" font-size="15" font-weight="700" font-family="Arial,sans-serif" fill="white">가</text></svg>`,
+  sogang:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#8B1A1A"/><text x="25" y="30" font-size="10" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle" fill="white">SGU</text><text x="25" y="42" font-size="8" font-family="Arial,sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.8)">MAIL</text></svg>`,
+  gmail:   `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M8 14h34v22H8z" fill="#F1F3F4"/><path d="M8 14l17 13L42 14" fill="none" stroke="#EA4335" stroke-width="2"/><path d="M8 14v22h6V22l11 8 11-8v14h6V14" fill="white"/><path d="M8 14l17 13L42 14H8z" fill="#EA4335"/><path d="M14 22v14H8V14l6 8zm22 0v14h6V14l-6 8z" fill="#C5221F"/></svg>`,
+  hansol:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="10" fill="#1E4DB7"/><text x="25" y="31" font-size="16" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">H</text><rect x="16" y="34" width="18" height="3" rx="1.5" fill="white" opacity="0.6"/></svg>`,
+  calendar:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#4285F4"/><rect x="8" y="16" width="34" height="26" rx="3" fill="white"/><rect x="8" y="16" width="34" height="10" rx="3" fill="#4285F4"/><rect x="8" y="21" width="34" height="5" fill="#4285F4"/><text x="25" y="38" font-size="14" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="#4285F4">31</text><rect x="16" y="10" width="4" height="8" rx="2" fill="white"/><rect x="30" y="10" width="4" height="8" rx="2" fill="white"/></svg>`,
+  gdrive:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8L9 36h10l16-28z" fill="#4285F4"/><path d="M9 36h32l-6-10H15z" fill="#34A853"/><path d="M35 26L25 8l-6 10 10 18 6-10z" fill="#FBBC05"/></svg>`,
+  nfinance:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#00C73C"/><path d="M13 35V17l9 12V17h6v18l-9-12v12z" fill="white"/><path d="M31 17h6v18h-6z" fill="white" opacity="0.7"/></svg>`,
+  nmap:    `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><path d="M25 10c-5.5 0-10 4.5-10 10 0 7.5 10 20 10 20s10-12.5 10-20c0-5.5-4.5-10-10-10zm0 13.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z" fill="white"/></svg>`,
+  gmap:    `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 9 12 22 12 22s12-13 12-22c0-6.6-5.4-12-12-12z" fill="#EA4335"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 2.8.9 5.3 2.5 7.3L30 10.5A11.9 11.9 0 0025 8z" fill="#C5221F"/><circle cx="25" cy="20" r="4.5" fill="white"/><path d="M13 20c0 9 12 22 12 22l6-7.5C25.5 37 13 29 13 20z" fill="#FBBC05"/><path d="M37 20c0 2.3-.6 4.5-1.6 6.3L30 10.5A12 12 0 0137 20z" fill="#4285F4"/></svg>`,
   github:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#24292F"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25 10a15 15 0 00-4.74 29.23c.75.14 1.02-.33 1.02-.72v-2.8c-4.15.9-5.03-2-5.03-2-.68-1.72-1.66-2.18-1.66-2.18-1.36-.93.1-.91.1-.91 1.5.1 2.3 1.54 2.3 1.54 1.33 2.28 3.5 1.62 4.36 1.24.13-.97.52-1.62.95-1.99-3.32-.38-6.8-1.66-6.8-7.38 0-1.63.58-2.96 1.54-4.01-.15-.38-.67-1.9.15-3.96 0 0 1.26-.4 4.12 1.54a14.3 14.3 0 017.5 0c2.86-1.95 4.11-1.54 4.11-1.54.82 2.06.3 3.58.15 3.96.96 1.05 1.54 2.38 1.54 4.01 0 5.74-3.5 7-6.83 7.37.54.46 1.01 1.38 1.01 2.78v4.12c0 .4.27.87 1.03.72A15 15 0 0025 10z" fill="white"/></svg>`,
 };
 const EMOJI_FALLBACK=['🌟','📌','🔖','💡','🎯','⚡','🌈','🔥','📎','🗂'];
 const DEFAULT_SHORTCUTS=[
-  {name:"네이버",  url:"https://naver.com",         iconKey:"naver"},
-  {name:"구글",   url:"https://google.com",        iconKey:"google"},
-  {name:"유튜브", url:"https://youtube.com",       iconKey:"youtube"},
-  {name:"카카오", url:"https://kakao.com",         iconKey:"kakao"},
-  {name:"쿠팡",   url:"https://coupang.com",       iconKey:"coupang"},
-  {name:"카페",   url:"https://cafe.naver.com",    iconKey:"cafe"},
-  {name:"날씨",   url:"https://weather.naver.com", iconKey:"weather"},
-  {name:"지도",   url:"https://map.naver.com",     iconKey:"map"},
-  {name:"파파고", url:"https://papago.naver.com",  iconKey:"papago"},
-  {name:"GitHub", url:"https://github.com",        iconKey:"github"},
+  {name:"네이버",   url:"https://www.naver.com/",                    iconKey:"naver"},
+  {name:"구글",    url:"https://www.google.com/",                   iconKey:"google"},
+  {name:"서강메일", url:"https://mail.sogang.ac.kr/",                iconKey:"sogang"},
+  {name:"지메일",  url:"https://mail.google.com/",                  iconKey:"gmail"},
+  {name:"한솔에코", url:"https://echo.hansol.com/",                  iconKey:"hansol"},
+  {name:"캘린더",  url:"https://calendar.naver.com/",               iconKey:"calendar"},
+  {name:"구글독스", url:"https://docs.google.com/spreadsheets/u/0/", iconKey:"gdrive"},
+  {name:"네이버증권",url:"https://finance.naver.com/",               iconKey:"nfinance"},
+  {name:"네이버지도",url:"https://map.naver.com/p/",                 iconKey:"nmap"},
+  {name:"구글지도", url:"https://www.google.co.kr/maps",             iconKey:"gmap"},
+  {name:"깃허브",  url:"https://github.com/",                       iconKey:"github"},
 ];
 
 let shortcuts=JSON.parse(localStorage.getItem('gw_u2_sc')||'null')||DEFAULT_SHORTCUTS;
@@ -429,7 +431,7 @@ async function loadWeather(){
 
     function makeTempChart(points){
       if(!points.length)return'';
-      const W=100,H=48,pad=10;
+      const W=130,H=48,pad=10;
       const temps=points.map(p=>p.temp);
       const mn=Math.min(...temps),mx=Math.max(...temps);
       const range=mx-mn||1;
@@ -440,7 +442,7 @@ async function loadWeather(){
     }
 
     let html=`<div class="weather-scroll">
-      <div class="wx-card today" style="min-width:180px;max-width:220px;">
+      <div class="wx-card today" style="min-width:234px;max-width:286px;">
         <div style="display:flex;align-items:center;gap:14px;width:100%;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;">
             <div class="wx-label">오늘</div>
