@@ -1,197 +1,187 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="theme-color" content="#0d0f14" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#0d0f14"/>
 <title>Jesse Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0f14; color: #e8eaf0; min-height: 100vh; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0f14;color:#e8eaf0;min-height:100vh;}
 
 /* ── 공통 ── */
-.panel { background: transparent; border: none; }
-.clock-wrap { display: flex; align-items: baseline; justify-content: center; flex-wrap: nowrap; gap: 12px; white-space: nowrap; overflow: hidden; }
-#clock-date { font-weight: 300; color: #b0b8d0; flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-#clock-time { font-family: 'Exo 2', sans-serif; font-weight: 200; color: #fff; display: flex; align-items: center; flex-shrink: 0; }
-.clock-seg { display: inline-block; width: 2ch; text-align: center; font-variant-numeric: tabular-nums; }
-.clock-sep { display: inline-block; width: 0.5ch; text-align: center; color: rgba(255,255,255,0.35); }
+.clock-wrap{display:flex;align-items:baseline;justify-content:center;flex-wrap:nowrap;gap:12px;white-space:nowrap;overflow:hidden;}
+#clock-date{font-weight:300;color:#b0b8d0;flex-shrink:1;min-width:0;overflow:hidden;text-overflow:ellipsis;}
+#clock-time{font-family:'Exo 2',sans-serif;font-weight:200;color:#fff;display:flex;align-items:center;flex-shrink:0;}
+.clock-seg{display:inline-block;width:2ch;text-align:center;font-variant-numeric:tabular-nums;}
+.clock-sep{display:inline-block;width:0.5ch;text-align:center;color:rgba(255,255,255,0.35);}
+.google-dots{display:flex;gap:2px;}
+.google-dots span{border-radius:50%;display:block;}
+.gd1{background:#4285F4}.gd2{background:#EA4335}.gd3{background:#FBBC05}.gd4{background:#34A853}
+.shortcut-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;}
+.shortcut-wrap{position:relative;}
+.shortcut-icon{overflow:hidden;border:1px solid rgba(255,255,255,0.06);display:block;}
+.shortcut-icon svg,.shortcut-icon img{width:100%;height:100%;display:block;object-fit:cover;}
+.shortcut-label{color:#8890aa;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.del-btn{display:none;position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:#e03e3e;color:#fff;font-size:10px;font-weight:700;border:1.5px solid #0d0f14;cursor:pointer;align-items:center;justify-content:center;z-index:2;padding:0;line-height:1;}
+.shortcut-add .shortcut-icon{background:rgba(34,37,58,0.6);border-style:dashed;border-color:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;}
+.wx-card{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.05);}
+.wx-card.today{background:rgba(66,133,244,0.13);border-color:rgba(66,133,244,0.28);}
+.wx-label{font-weight:700;color:#8890aa;}
+.wx-date{color:#445;}
+.wx-temp-hi{font-weight:700;color:#f0c060;}
+.wx-temp-lo{color:#7baaf7;}
+.wx-desc{color:#8890aa;text-align:center;line-height:1.4;}
+.wx-rain{color:#7baaf7;}
+.weather-loading{color:#556;font-size:13px;text-align:center;line-height:1.8;}
+.news-card{border:1px solid rgba(255,255,255,0.06);cursor:pointer;background:rgba(255,255,255,0.02);}
+.news-source{color:#03C75A;font-weight:600;}
+.news-title{font-weight:500;color:#c0c8e0;line-height:1.5;}
+.news-time{color:#445;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.68);z-index:200;}
+.modal-overlay.show{display:flex;}
+.modal-box input{width:100%;border:1px solid #2e3245;background:#13151e;color:#e8eaf0;outline:none;}
+.modal-box input::placeholder{color:#556;}
+.modal-box input:focus{border-color:#4285F4;}
+.modal-actions button{border:1px solid #2e3245;background:#22253a;cursor:pointer;font-weight:600;color:#aab0c8;}
+.modal-actions .btn-confirm{background:#4285F4;color:#fff;border-color:#4285F4;}
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:rgba(30,33,50,0.97);color:#c0c8e0;border:1px solid rgba(255,255,255,0.12);z-index:999;white-space:nowrap;transition:opacity 0.3s;opacity:0;pointer-events:none;padding:9px 18px;border-radius:10px;font-size:12px;}
+.drag-over .shortcut-icon{box-shadow:0 0 0 2.5px #4285F4 !important;}
+.drag-active .shortcut-icon{opacity:0.5;transform:scale(0.92);}
 
-.google-dots { display: flex; gap: 2px; }
-.google-dots span { border-radius: 50%; display: block; }
-.gd1{background:#4285F4;} .gd2{background:#EA4335;} .gd3{background:#FBBC05;} .gd4{background:#34A853;}
+/* ════════════ 데스크톱 ════════════ */
+body.desktop .gateway{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem;}
+body.desktop .clock-layer{text-align:center;margin-bottom:1.8rem;margin-top:2rem;}
+body.desktop #clock-date{font-size:clamp(14px,1.6vw,22px);letter-spacing:1px;}
+body.desktop #clock-time{font-size:clamp(28px,3.8vw,52px);gap:0;}
 
-.shortcut-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
-.shortcut-wrap { position: relative; }
-.shortcut-icon { overflow: hidden; border: 1px solid rgba(255,255,255,0.06); display: block; }
-.shortcut-icon svg { width: 100%; height: 100%; display: block; }
-.shortcut-label { color: #8890aa; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.del-btn { display: none; position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; background: #e03e3e; color: #fff; font-size: 10px; font-weight: 700; border: 1.5px solid #0d0f14; cursor: pointer; align-items: center; justify-content: center; z-index: 2; padding: 0; line-height: 1; }
-.shortcut-add .shortcut-icon { background: rgba(34,37,58,0.6); border-style: dashed; border-color: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
+body.desktop .search-layer{display:flex;align-items:center;gap:8px;max-width:920px;margin:0 auto 1.8rem;flex-wrap:wrap;justify-content:center;}
+body.desktop .search-layer input{flex:1;min-width:240px;height:48px;border-radius:24px;border:1px solid rgba(255,255,255,0.12);background:rgba(22,25,38,0.97);padding:0 22px;font-size:15px;color:#e8eaf0;outline:none;}
+body.desktop .search-layer input::placeholder{color:#556;}
+body.desktop .search-layer input:focus{border-color:#4285F4;box-shadow:0 0 0 3px rgba(66,133,244,0.18);}
+body.desktop .btn-search{height:48px;width:110px;border-radius:24px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;transition:all 0.18s;border:none;flex-shrink:0;}
+body.desktop .btn-naver{background:#03C75A;color:#fff;box-shadow:0 2px 14px rgba(3,199,90,0.3);}
+body.desktop .btn-naver:hover{background:#02b050;transform:translateY(-1px);}
+body.desktop .btn-google{background:#fff;color:#3c4043;}
+body.desktop .btn-google:hover{background:#f1f3f4;transform:translateY(-1px);}
+body.desktop .google-dots span{width:7px;height:7px;}
+body.desktop .ai-divider{width:1px;height:32px;background:rgba(255,255,255,0.1);flex-shrink:0;}
+body.desktop .ai-wrap{position:relative;}
+body.desktop .ai-tooltip{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);background:rgba(22,25,38,0.95);color:#c0c8e0;font-size:11px;white-space:nowrap;padding:3px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:10;}
+body.desktop .ai-wrap:hover .ai-tooltip{opacity:1;}
+body.desktop .btn-ai{height:48px;width:48px;border-radius:50%;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s;padding:0;}
+body.desktop .btn-ai:hover{transform:translateY(-2px) scale(1.08);}
+body.desktop .btn-ai svg{width:26px;height:26px;display:block;}
+body.desktop .btn-chatgpt{background:#10a37f;box-shadow:0 2px 12px rgba(16,163,127,0.35);}
+body.desktop .btn-gemini{background:#1a73e8;box-shadow:0 2px 12px rgba(26,115,232,0.35);}
+body.desktop .btn-claude-ai{background:#cc785c;box-shadow:0 2px 12px rgba(204,120,92,0.35);}
+body.desktop .btn-perplexity{background:#20b2aa;box-shadow:0 2px 12px rgba(32,178,170,0.35);}
 
-.wx-card { display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); }
-.wx-card.today { background: rgba(66,133,244,0.13); border-color: rgba(66,133,244,0.28); }
-.wx-label { font-weight: 700; color: #8890aa; }
-.wx-date  { color: #445; }
-.wx-temp-hi { font-weight: 700; color: #f0c060; }
-.wx-temp-lo { color: #7baaf7; }
-.wx-desc { color: #8890aa; text-align: center; line-height: 1.4; }
-.wx-rain { color: #7baaf7; }
-.weather-loading { color: #556; font-size: 13px; text-align: center; line-height: 1.8; }
+body.desktop .shortcuts-layer{padding:1rem 1.25rem;margin-bottom:1.6rem;}
+body.desktop .shortcuts-grid{display:flex;flex-wrap:nowrap;gap:8px;justify-content:center;align-items:flex-start;overflow-x:auto;}
+body.desktop .shortcuts-grid::-webkit-scrollbar{height:0;}
+body.desktop .shortcut-item{gap:6px;min-width:72px;flex-shrink:0;padding-top:10px;}
+body.desktop .shortcut-wrap{width:56px;height:56px;}
+body.desktop .shortcut-icon{width:56px;height:56px;border-radius:14px;transition:box-shadow 0.15s;}
+body.desktop .shortcut-item:hover .shortcut-icon{box-shadow:0 0 0 2.5px rgba(255,255,255,0.3);}
+body.desktop .shortcut-label{font-size:11px;max-width:68px;margin-top:0;}
+body.desktop .shortcut-item:hover .del-btn{display:flex;}
+body.desktop .shortcut-add-plus{font-size:24px;color:#555;}
 
-.news-card { border: 1px solid rgba(255,255,255,0.06); cursor: pointer; background: rgba(255,255,255,0.02); }
-.news-source { color: #03C75A; font-weight: 600; }
-.news-title  { font-weight: 500; color: #c0c8e0; line-height: 1.5; }
-.news-time   { color: #445; }
-.news-loading { color: #556; font-size: 13px; text-align: center; }
-.news-header { font-weight: 700; color: #556; letter-spacing: 0.5px; text-transform: uppercase; }
+body.desktop .bottom-col{display:flex;flex-direction:column;gap:16px;}
+body.desktop .weather-layer{padding:1.1rem 0;position:relative;}
+body.desktop .weather-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;max-width:100%;justify-content:center;}
+body.desktop .weather-scroll::-webkit-scrollbar{height:4px;}
+body.desktop .weather-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px;}
+body.desktop .wx-card{border-radius:14px;padding:12px 6px 10px;min-width:63px;max-width:98px;flex:1;}
+body.desktop .wx-card.today{min-width:180px;max-width:220px;}
+body.desktop .wx-label{font-size:12px;margin-bottom:1px;}
+body.desktop .wx-date{font-size:11px;margin-bottom:8px;}
+body.desktop .wx-emoji{font-size:38px;line-height:1;margin-bottom:8px;}
+body.desktop .wx-temp-hi{font-size:17px;}
+body.desktop .wx-temp-lo{font-size:13px;margin-top:2px;}
+body.desktop .wx-desc{font-size:11px;margin-top:4px;}
+body.desktop .wx-rain{font-size:11px;margin-top:3px;}
+body.desktop .weather-loading{padding:2rem 0;}
+body.desktop .modal-overlay{align-items:center;justify-content:center;}
+body.desktop .modal-box{background:#1a1d26;border-radius:18px;padding:1.75rem;width:360px;border:1px solid #2e3245;box-shadow:0 8px 40px rgba(0,0,0,0.4);}
+body.desktop .modal-box h3{font-size:15px;font-weight:700;margin-bottom:1.25rem;color:#e8eaf0;}
+body.desktop .modal-box input{height:42px;border-radius:10px;padding:0 14px;font-size:14px;margin-bottom:10px;}
+body.desktop .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+body.desktop .modal-actions button{height:38px;padding:0 20px;border-radius:10px;font-size:13px;}
+body.desktop .modal-handle{display:none;}
 
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.68); z-index: 200; align-items: center; justify-content: center; }
-.modal-overlay.show { display: flex; }
-.modal-box input { width: 100%; border: 1px solid #2e3245; background: #13151e; color: #e8eaf0; outline: none; }
-.modal-box input::placeholder { color: #556; }
-.modal-box input:focus { border-color: #4285F4; }
-.modal-actions button { border: 1px solid #2e3245; background: #22253a; cursor: pointer; font-weight: 600; color: #aab0c8; }
-.modal-actions .btn-confirm { background: #4285F4; color: #fff; border-color: #4285F4; }
+/* ════════════ 모바일 ════════════ */
+body.mobile .gateway{max-width:480px;margin:0 auto;padding:env(safe-area-inset-top,16px) 16px calc(env(safe-area-inset-bottom,0px) + 80px);}
+body.mobile .clock-layer{text-align:center;padding:20px 0 14px;margin-top:1.5rem;}
+body.mobile #clock-date{font-size:clamp(12px,3.5vw,15px);letter-spacing:0.3px;}
+body.mobile #clock-time{font-size:clamp(26px,11vw,46px);gap:0;line-height:1;}
 
-.drag-over .shortcut-icon { box-shadow: 0 0 0 2.5px #4285F4 !important; }
-.drag-active .shortcut-icon { opacity: 0.5; transform: scale(0.92); } bottom: 32px; left: 50%; transform: translateX(-50%); background: rgba(30,33,50,0.97); color: #c0c8e0; border: 1px solid rgba(255,255,255,0.12); z-index: 999; white-space: nowrap; transition: opacity 0.3s; opacity: 0; pointer-events: none; padding: 9px 18px; border-radius: 10px; font-size: 12px; }
+body.mobile .search-layer{margin-bottom:10px;}
+body.mobile .search-box{display:flex;align-items:center;background:rgba(22,25,38,0.97);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;}
+body.mobile .search-box input{flex:1;height:48px;background:transparent;border:none;padding:0 14px;font-size:15px;color:#e8eaf0;outline:none;}
+body.mobile .search-box input::placeholder{color:#556;}
+body.mobile .search-divider{width:1px;height:24px;background:rgba(255,255,255,0.1);flex-shrink:0;}
+body.mobile .search-btns{display:flex;}
+body.mobile .btn-s{height:48px;width:60px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+body.mobile .btn-s:active{background:rgba(255,255,255,0.08);}
+body.mobile .btn-s-inner{display:flex;flex-direction:column;align-items:center;gap:2px;}
+body.mobile .btn-s-inner span{font-size:9px;font-weight:700;}
+body.mobile .btn-s-naver .btn-s-inner span{color:#03C75A;}
+body.mobile .btn-s-google .btn-s-inner span{color:#7baaf7;}
+body.mobile .btn-s-naver{border-right:1px solid rgba(255,255,255,0.08);}
+body.mobile .google-dots span{width:5px;height:5px;}
 
-/* ════════════════════════════════
-   데스크톱
-════════════════════════════════ */
-body.desktop .gateway { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
-body.desktop .clock-layer { text-align: center; margin-bottom: 1.8rem; margin-top: 2rem; }
-body.desktop #clock-date { font-size: clamp(14px, 1.6vw, 22px); letter-spacing: 1px; }
-body.desktop #clock-time { font-size: clamp(28px, 3.8vw, 52px); gap: 0; }
+body.mobile .ai-row{display:flex;gap:6px;margin-bottom:12px;}
+body.mobile .btn-ai{height:42px;border-radius:21px;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;gap:5px;flex:1;font-size:11px;font-weight:700;color:#fff;transition:all 0.15s;}
+body.mobile .btn-ai:active{opacity:0.8;transform:scale(0.97);}
+body.mobile .btn-ai svg{width:15px;height:15px;flex-shrink:0;}
+body.mobile .btn-chatgpt{background:#10a37f;}
+body.mobile .btn-gemini{background:#1a73e8;}
+body.mobile .btn-claude-ai{background:#cc785c;}
+body.mobile .btn-perplexity{background:#20b2aa;}
 
-body.desktop .search-layer { display: flex; align-items: center; gap: 8px; max-width: 920px; margin: 0 auto 1.8rem; flex-wrap: wrap; justify-content: center; }
-body.desktop .search-layer input { flex: 1; min-width: 240px; height: 48px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); background: rgba(22,25,38,0.97); padding: 0 22px; font-size: 15px; color: #e8eaf0; outline: none; }
-body.desktop .search-layer input::placeholder { color: #556; }
-body.desktop .search-layer input:focus { border-color: #4285F4; box-shadow: 0 0 0 3px rgba(66,133,244,0.18); }
-body.desktop .btn-search { height: 48px; width: 110px; border-radius: 24px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; transition: all 0.18s; border: none; flex-shrink: 0; }
-body.desktop .btn-naver  { background: #03C75A; color: #fff; box-shadow: 0 2px 14px rgba(3,199,90,0.3); }
-body.desktop .btn-naver:hover  { background: #02b050; transform: translateY(-1px); }
-body.desktop .btn-google { background: #fff; color: #3c4043; }
-body.desktop .btn-google:hover { background: #f1f3f4; transform: translateY(-1px); }
-body.desktop .google-dots span { width: 7px; height: 7px; }
-body.desktop .ai-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-body.desktop .ai-wrap { position: relative; }
-body.desktop .ai-tooltip { position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); background: rgba(22,25,38,0.95); color: #c0c8e0; font-size: 11px; white-space: nowrap; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); pointer-events: none; opacity: 0; transition: opacity 0.15s; z-index: 10; }
-body.desktop .ai-wrap:hover .ai-tooltip { opacity: 1; }
-body.desktop .btn-ai { height: 48px; width: 48px; border-radius: 50%; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.18s; padding: 0; }
-body.desktop .btn-ai:hover { transform: translateY(-2px) scale(1.08); }
-body.desktop .btn-ai svg { width: 26px; height: 26px; display: block; }
-body.desktop .btn-chatgpt    { background: #10a37f; box-shadow: 0 2px 12px rgba(16,163,127,0.35); }
-body.desktop .btn-gemini     { background: #1a73e8; box-shadow: 0 2px 12px rgba(26,115,232,0.35); }
-body.desktop .btn-claude-ai  { background: #cc785c; box-shadow: 0 2px 12px rgba(204,120,92,0.35); }
-body.desktop .btn-perplexity { background: #20b2aa; box-shadow: 0 2px 12px rgba(32,178,170,0.35); }
+body.mobile .shortcuts-layer{padding:12px 10px;margin-bottom:12px;}
+body.mobile .edit-toggle{display:block;text-align:right;font-size:12px;color:#556;margin-bottom:10px;cursor:pointer;}
+body.mobile .edit-toggle.active{color:#7baaf7;}
+body.mobile .shortcuts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;}
+body.mobile .shortcut-item{gap:5px;-webkit-user-select:none;}
+body.mobile .shortcut-wrap{width:56px;height:56px;}
+body.mobile .shortcut-icon{width:56px;height:56px;border-radius:14px;}
+body.mobile .shortcut-item:active .shortcut-icon{opacity:0.7;}
+body.mobile .shortcut-label{font-size:10px;width:60px;}
+body.mobile .edit-mode .del-btn{display:flex;}
+body.mobile .edit-mode .shortcut-icon{animation:wiggle 0.4s infinite alternate;}
+@keyframes wiggle{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
+body.mobile .shortcut-add-plus{font-size:22px;color:#555;}
 
-body.desktop .shortcuts-layer { border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 1.6rem; }
-body.desktop .shortcuts-grid { display: flex; flex-wrap: nowrap; gap: 8px; justify-content: center; align-items: flex-start; overflow-x: auto; }
-body.desktop .shortcuts-grid::-webkit-scrollbar { height: 0; }
-body.desktop .shortcut-item { gap: 6px; min-width: 72px; flex-shrink: 0; padding-top: 10px; }
-body.desktop .shortcut-wrap { width: 56px; height: 56px; }
-body.desktop .shortcut-icon { width: 56px; height: 56px; border-radius: 14px; transition: box-shadow 0.15s; }
-body.desktop .shortcut-item:hover .shortcut-icon { box-shadow: 0 0 0 2.5px rgba(255,255,255,0.3); }
-body.desktop .shortcut-label { font-size: 11px; max-width: 68px; margin-top: 0; }
-body.desktop .shortcut-item:hover .del-btn { display: flex; }
-body.desktop .shortcut-add-plus { font-size: 24px; color: #555; }
-
-body.desktop .bottom-col { display: flex; flex-direction: column; gap: 16px; }
-body.desktop .weather-layer { border-radius: 16px; padding: 1.1rem 0; max-width: 100%; overflow: hidden; }
-body.desktop .weather-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; max-width: 100%; justify-content: center; }
-body.desktop .wx-card { border-radius: 14px; padding: 12px 6px 10px; min-width: 63px; max-width: 98px; flex: 1; }
-body.desktop .wx-label { font-size: 12px; margin-bottom: 1px; }
-body.desktop .wx-date  { font-size: 11px; margin-bottom: 8px; }
-body.desktop .wx-emoji { font-size: 38px; line-height: 1; margin-bottom: 8px; }
-body.desktop .wx-temp-hi { font-size: 17px; }
-body.desktop .wx-temp-lo { font-size: 13px; margin-top: 2px; }
-body.desktop .wx-desc { font-size: 11px; margin-top: 4px; }
-body.desktop .wx-rain { font-size: 11px; margin-top: 3px; }
-body.desktop .weather-loading { padding: 2rem 0; }
-
-body.desktop .modal-overlay { align-items: center; justify-content: center; }
-body.desktop .modal-box { background: #1a1d26; border-radius: 18px; padding: 1.75rem; width: 360px; border: 1px solid #2e3245; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
-body.desktop .modal-box h3 { font-size: 15px; font-weight: 700; margin-bottom: 1.25rem; color: #e8eaf0; }
-body.desktop .modal-box input { height: 42px; border-radius: 10px; padding: 0 14px; font-size: 14px; margin-bottom: 10px; }
-body.desktop .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
-body.desktop .modal-actions button { height: 38px; padding: 0 20px; border-radius: 10px; font-size: 13px; }
-body.desktop .modal-handle { display: none; }
-
-/* ════════════════════════════════
-   모바일
-════════════════════════════════ */
-body.mobile .gateway { max-width: 480px; margin: 0 auto; padding: env(safe-area-inset-top,16px) 16px calc(env(safe-area-inset-bottom,0px) + 80px); }
-body.mobile .clock-layer { text-align: center; padding: 20px 0 14px; margin-top: 1.5rem; }
-body.mobile #clock-date { font-size: clamp(12px, 3.5vw, 15px); letter-spacing: 0.3px; }
-body.mobile #clock-time { font-size: clamp(26px, 11vw, 46px); gap: 0; line-height: 1; }
-
-body.mobile .search-layer { margin-bottom: 10px; }
-body.mobile .search-box { display: flex; align-items: center; background: rgba(22,25,38,0.97); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
-body.mobile .search-box input { flex: 1; height: 48px; background: transparent; border: none; padding: 0 14px; font-size: 15px; color: #e8eaf0; outline: none; }
-body.mobile .search-box input::placeholder { color: #556; }
-body.mobile .search-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-body.mobile .search-btns { display: flex; }
-body.mobile .btn-s { height: 48px; width: 60px; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-body.mobile .btn-s:active { background: rgba(255,255,255,0.08); }
-body.mobile .btn-s-inner { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-body.mobile .btn-s-inner span { font-size: 9px; font-weight: 700; }
-body.mobile .btn-s-naver .btn-s-inner span { color: #03C75A; }
-body.mobile .btn-s-google .btn-s-inner span { color: #7baaf7; }
-body.mobile .btn-s-naver { border-right: 1px solid rgba(255,255,255,0.08); }
-body.mobile .google-dots span { width: 5px; height: 5px; }
-
-body.mobile .ai-row { display: flex; gap: 6px; margin-bottom: 12px; }
-body.mobile .btn-ai { height: 42px; border-radius: 21px; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 5px; flex: 1; font-size: 11px; font-weight: 700; color: #fff; transition: all 0.15s; }
-body.mobile .btn-ai:active { opacity: 0.8; transform: scale(0.97); }
-body.mobile .btn-ai svg { width: 15px; height: 15px; flex-shrink: 0; }
-body.mobile .btn-chatgpt    { background: #10a37f; }
-body.mobile .btn-gemini     { background: #1a73e8; }
-body.mobile .btn-claude-ai  { background: #cc785c; }
-body.mobile .btn-perplexity { background: #20b2aa; }
-
-body.mobile .shortcuts-layer { border-radius: 16px; padding: 12px 10px; margin-bottom: 12px; }
-body.mobile .edit-toggle { display: block; text-align: right; font-size: 12px; color: #556; margin-bottom: 10px; cursor: pointer; }
-body.mobile .edit-toggle.active { color: #7baaf7; }
-body.mobile .shortcuts-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px 6px; }
-body.mobile .shortcut-item { gap: 5px; -webkit-user-select: none; }
-body.mobile .shortcut-wrap { width: 56px; height: 56px; }
-body.mobile .shortcut-icon { width: 56px; height: 56px; border-radius: 14px; }
-body.mobile .shortcut-item:active .shortcut-icon { opacity: 0.7; }
-body.mobile .shortcut-label { font-size: 10px; width: 60px; }
-body.mobile .edit-mode .del-btn { display: flex; }
-body.mobile .edit-mode .shortcut-icon { animation: wiggle 0.4s infinite alternate; }
-@keyframes wiggle { from{transform:rotate(-1.5deg)} to{transform:rotate(1.5deg)} }
-body.mobile .shortcut-add-plus { font-size: 22px; color: #555; }
-
-body.mobile .bottom-col { display: flex; flex-direction: column; gap: 12px; }
-body.mobile .weather-layer { border-radius: 16px; padding: 12px 8px; }
-body.mobile .weather-scroll { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 4px; }
-body.mobile .weather-scroll::-webkit-scrollbar { height: 0; }
-body.mobile .wx-card { border-radius: 10px; padding: 8px 3px 7px; min-width: 58px; flex: 1; }
-body.mobile .wx-label { font-size: 10px; margin-bottom: 1px; }
-body.mobile .wx-date  { font-size: 9px; margin-bottom: 4px; }
-body.mobile .wx-emoji { font-size: 20px; line-height: 1; margin-bottom: 4px; }
-body.mobile .wx-temp-hi { font-size: 12px; }
-body.mobile .wx-temp-lo { font-size: 10px; margin-top: 1px; }
-body.mobile .wx-desc { font-size: 9px; margin-top: 2px; }
-body.mobile .wx-rain { font-size: 9px; margin-top: 2px; }
-body.mobile .weather-loading { padding: 1.5rem 0; }
-
-body.mobile .modal-overlay { align-items: flex-end; justify-content: center; }
-body.mobile .modal-box { background: #1a1d26; border-radius: 20px 20px 0 0; padding: 20px 20px calc(env(safe-area-inset-bottom,0px) + 20px); width: 100%; border-top: 1px solid #2e3245; }
-body.mobile .modal-handle { width: 36px; height: 4px; background: #333; border-radius: 2px; margin: 0 auto 16px; }
-body.mobile .modal-box h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #e8eaf0; }
-body.mobile .modal-box input { height: 44px; border-radius: 10px; padding: 0 14px; font-size: 15px; margin-bottom: 10px; }
-body.mobile .modal-actions { display: flex; gap: 10px; margin-top: 4px; }
-body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; font-size: 14px; }
+body.mobile .bottom-col{display:flex;flex-direction:column;gap:12px;}
+body.mobile .weather-layer{padding:12px 8px;position:relative;}
+body.mobile .weather-scroll{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;}
+body.mobile .weather-scroll::-webkit-scrollbar{height:0;}
+body.mobile .wx-card{border-radius:10px;padding:8px 3px 7px;min-width:58px;flex:1;}
+body.mobile .wx-card.today{min-width:160px;max-width:200px;}
+body.mobile .wx-label{font-size:10px;margin-bottom:1px;}
+body.mobile .wx-date{font-size:9px;margin-bottom:4px;}
+body.mobile .wx-emoji{font-size:20px;line-height:1;margin-bottom:4px;}
+body.mobile .wx-temp-hi{font-size:12px;}
+body.mobile .wx-temp-lo{font-size:10px;margin-top:1px;}
+body.mobile .wx-desc{font-size:9px;margin-top:2px;}
+body.mobile .wx-rain{font-size:9px;margin-top:2px;}
+body.mobile .weather-loading{padding:1.5rem 0;}
+body.mobile .modal-overlay{align-items:flex-end;justify-content:center;}
+body.mobile .modal-box{background:#1a1d26;border-radius:20px 20px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 20px);width:100%;border-top:1px solid #2e3245;}
+body.mobile .modal-handle{width:36px;height:4px;background:#333;border-radius:2px;margin:0 auto 16px;}
+body.mobile .modal-box h3{font-size:15px;font-weight:700;margin-bottom:14px;color:#e8eaf0;}
+body.mobile .modal-box input{height:44px;border-radius:10px;padding:0 14px;font-size:15px;margin-bottom:10px;}
+body.mobile .modal-actions{display:flex;gap:10px;margin-top:4px;}
+body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-size:14px;}
 </style>
 </head>
 <body>
@@ -211,29 +201,29 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
     </div>
   </div>
 
-  <!-- 검색 (데스크톱) -->
+  <!-- 검색 데스크톱 -->
   <div class="search-layer" id="search-desktop">
-    <input type="text" id="sq-d" placeholder="검색 또는 AI에게 질문을 입력하세요..." />
-    <button class="btn-search btn-naver"  onclick="doSearch('naver')">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> NAVER
+    <input type="text" id="sq-d" placeholder="검색 또는 AI에게 질문을 입력하세요..."/>
+    <button class="btn-search btn-naver" onclick="doSearch('naver')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>NAVER
     </button>
     <button class="btn-search btn-google" onclick="doSearch('google')">
-      <div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div> Google
+      <div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div>Google
     </button>
     <div class="ai-divider"></div>
-    <div class="ai-wrap"><button class="btn-ai btn-chatgpt"    onclick="doAI('chatgpt')"    aria-label="ChatGPT"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg></button><span class="ai-tooltip">ChatGPT</span></div>
-    <div class="ai-wrap"><button class="btn-ai btn-gemini"     onclick="doAI('gemini')"     aria-label="Gemini"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg></button><span class="ai-tooltip">Gemini</span></div>
-    <div class="ai-wrap"><button class="btn-ai btn-claude-ai"  onclick="doAI('claude')"     aria-label="Claude"><svg viewBox="0 0 24 24" fill="none"><path d="M17.304 1.793C15.973.55 14.19-.08 12.36.01c-2.57.13-4.9 1.52-6.22 3.73L.88 12.59c-.96 1.63-.98 3.63-.06 5.28.92 1.65 2.65 2.68 4.52 2.71l.35.01v1.6c0 1 .54 1.92 1.42 2.41.87.49 1.94.46 2.79-.07l10.65-6.5c1.48-.9 2.44-2.43 2.56-4.12.12-1.69-.62-3.34-1.96-4.42l-.46-.37.31-.53c.69-1.18.84-2.6.4-3.9-.44-1.3-1.38-2.36-2.62-2.95zm-5.6 18.37-3.49-6.04 6.08-3.51 3.49 6.04-6.08 3.51zm4.27-10.44-6.08 3.51-3.49-6.04 6.08-3.51 3.49 6.04z" fill="white"/></svg></button><span class="ai-tooltip">Claude</span></div>
+    <div class="ai-wrap"><button class="btn-ai btn-chatgpt" onclick="doAI('chatgpt')" aria-label="ChatGPT"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg></button><span class="ai-tooltip">ChatGPT</span></div>
+    <div class="ai-wrap"><button class="btn-ai btn-gemini" onclick="doAI('gemini')" aria-label="Gemini"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg></button><span class="ai-tooltip">Gemini</span></div>
+    <div class="ai-wrap"><button class="btn-ai btn-claude-ai" onclick="doAI('claude')" aria-label="Claude"><svg viewBox="0 0 24 24" fill="none"><path d="M17.304 1.793C15.973.55 14.19-.08 12.36.01c-2.57.13-4.9 1.52-6.22 3.73L.88 12.59c-.96 1.63-.98 3.63-.06 5.28.92 1.65 2.65 2.68 4.52 2.71l.35.01v1.6c0 1 .54 1.92 1.42 2.41.87.49 1.94.46 2.79-.07l10.65-6.5c1.48-.9 2.44-2.43 2.56-4.12.12-1.69-.62-3.34-1.96-4.42l-.46-.37.31-.53c.69-1.18.84-2.6.4-3.9-.44-1.3-1.38-2.36-2.62-2.95zm-5.6 18.37-3.49-6.04 6.08-3.51 3.49 6.04-6.08 3.51zm4.27-10.44-6.08 3.51-3.49-6.04 6.08-3.51 3.49 6.04z" fill="white"/></svg></button><span class="ai-tooltip">Claude</span></div>
     <div class="ai-wrap"><button class="btn-ai btn-perplexity" onclick="doAI('perplexity')" aria-label="Perplexity"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="ai-tooltip">Perplexity</span></div>
   </div>
 
-  <!-- 검색 (모바일) -->
+  <!-- 검색 모바일 -->
   <div class="search-layer" id="search-mobile">
     <div class="search-box">
-      <input type="text" id="sq-m" placeholder="검색 또는 AI에게 질문..." />
+      <input type="text" id="sq-m" placeholder="검색 또는 AI에게 질문..."/>
       <div class="search-divider"></div>
       <div class="search-btns">
-        <button class="btn-s btn-s-naver"  onclick="doSearch('naver')">
+        <button class="btn-s btn-s-naver" onclick="doSearch('naver')">
           <div class="btn-s-inner"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>NAVER</span></div>
         </button>
         <button class="btn-s btn-s-google" onclick="doSearch('google')">
@@ -243,27 +233,26 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
     </div>
   </div>
 
-  <!-- AI 버튼 (모바일) -->
+  <!-- AI 버튼 모바일 -->
   <div class="ai-row" id="ai-mobile">
-    <button class="btn-ai btn-chatgpt"    onclick="doAI('chatgpt')"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg>ChatGPT</button>
-    <button class="btn-ai btn-gemini"     onclick="doAI('gemini')"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg>Gemini</button>
-    <button class="btn-ai btn-claude-ai"  onclick="doAI('claude')"><svg viewBox="0 0 24 24" fill="none"><path d="M17.304 1.793C15.973.55 14.19-.08 12.36.01c-2.57.13-4.9 1.52-6.22 3.73L.88 12.59c-.96 1.63-.98 3.63-.06 5.28.92 1.65 2.65 2.68 4.52 2.71l.35.01v1.6c0 1 .54 1.92 1.42 2.41.87.49 1.94.46 2.79-.07l10.65-6.5c1.48-.9 2.44-2.43 2.56-4.12.12-1.69-.62-3.34-1.96-4.42l-.46-.37.31-.53c.69-1.18.84-2.6.4-3.9-.44-1.3-1.38-2.36-2.62-2.95zm-5.6 18.37-3.49-6.04 6.08-3.51 3.49 6.04-6.08 3.51zm4.27-10.44-6.08 3.51-3.49-6.04 6.08-3.51 3.49 6.04z" fill="white"/></svg>Claude</button>
+    <button class="btn-ai btn-chatgpt" onclick="doAI('chatgpt')"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg>ChatGPT</button>
+    <button class="btn-ai btn-gemini" onclick="doAI('gemini')"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg>Gemini</button>
+    <button class="btn-ai btn-claude-ai" onclick="doAI('claude')"><svg viewBox="0 0 24 24" fill="none"><path d="M17.304 1.793C15.973.55 14.19-.08 12.36.01c-2.57.13-4.9 1.52-6.22 3.73L.88 12.59c-.96 1.63-.98 3.63-.06 5.28.92 1.65 2.65 2.68 4.52 2.71l.35.01v1.6c0 1 .54 1.92 1.42 2.41.87.49 1.94.46 2.79-.07l10.65-6.5c1.48-.9 2.44-2.43 2.56-4.12.12-1.69-.62-3.34-1.96-4.42l-.46-.37.31-.53c.69-1.18.84-2.6.4-3.9-.44-1.3-1.38-2.36-2.62-2.95zm-5.6 18.37-3.49-6.04 6.08-3.51 3.49 6.04-6.08 3.51zm4.27-10.44-6.08 3.51-3.49-6.04 6.08-3.51 3.49 6.04z" fill="white"/></svg>Claude</button>
     <button class="btn-ai btn-perplexity" onclick="doAI('perplexity')"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Perplexity</button>
   </div>
 
   <!-- 바로가기 -->
-  <div class="shortcuts-layer panel">
+  <div class="shortcuts-layer">
     <span class="edit-toggle" id="edit-toggle">편집</span>
     <div class="shortcuts-grid" id="shortcuts-grid"></div>
   </div>
 
-  <!-- 날씨 + 뉴스 -->
+  <!-- 날씨 -->
   <div class="bottom-col">
-    <div class="weather-layer panel" style="position:relative;">
+    <div class="weather-layer">
       <button id="location-btn" onclick="changeLocation()" style="position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#8890aa;font-size:11px;padding:3px 9px;border-radius:20px;cursor:pointer;z-index:2;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.13)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">📍 <span id="location-label">서울특별시</span></button>
       <div id="weather-content"><div class="weather-loading">날씨 불러오는 중...</div></div>
     </div>
-
   </div>
 </div>
 
@@ -273,8 +262,8 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
   <div class="modal-box">
     <div class="modal-handle"></div>
     <h3>바로가기 추가</h3>
-    <input type="text" id="new-name" placeholder="이름 (예: 유튜브)" />
-    <input type="text" id="new-url"  placeholder="URL (예: https://youtube.com)" />
+    <input type="text" id="new-name" placeholder="이름 (예: 유튜브)"/>
+    <input type="text" id="new-url" placeholder="URL (예: https://youtube.com)"/>
     <div class="modal-actions">
       <button id="btn-cancel">취소</button>
       <button class="btn-confirm" id="btn-confirm-add">추가</button>
@@ -286,8 +275,6 @@ body.mobile .modal-actions button { flex: 1; height: 44px; border-radius: 10px; 
 // ── 환경 감지 ─────────────────────────────────
 const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
 document.body.classList.add(isMobile ? 'mobile' : 'desktop');
-
-// 환경별 UI 요소 표시/숨김
 document.getElementById('search-desktop').style.display = isMobile ? 'none' : '';
 document.getElementById('search-mobile').style.display  = isMobile ? '' : 'none';
 document.getElementById('ai-mobile').style.display      = isMobile ? '' : 'none';
@@ -310,8 +297,8 @@ const SITE_ICONS = {
   papago:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#00C73C"/><text x="14" y="30" font-size="15" font-weight="700" font-family="Arial,sans-serif" fill="white">A</text><text x="27" y="35" font-size="15" font-weight="700" font-family="Arial,sans-serif" fill="white">가</text></svg>`,
   github:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#24292F"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25 10a15 15 0 00-4.74 29.23c.75.14 1.02-.33 1.02-.72v-2.8c-4.15.9-5.03-2-5.03-2-.68-1.72-1.66-2.18-1.66-2.18-1.36-.93.1-.91.1-.91 1.5.1 2.3 1.54 2.3 1.54 1.33 2.28 3.5 1.62 4.36 1.24.13-.97.52-1.62.95-1.99-3.32-.38-6.8-1.66-6.8-7.38 0-1.63.58-2.96 1.54-4.01-.15-.38-.67-1.9.15-3.96 0 0 1.26-.4 4.12 1.54a14.3 14.3 0 017.5 0c2.86-1.95 4.11-1.54 4.11-1.54.82 2.06.3 3.58.15 3.96.96 1.05 1.54 2.38 1.54 4.01 0 5.74-3.5 7-6.83 7.37.54.46 1.01 1.38 1.01 2.78v4.12c0 .4.27.87 1.03.72A15 15 0 0025 10z" fill="white"/></svg>`,
 };
-const EMOJI_FALLBACK = ['🌟','📌','🔖','💡','🎯','⚡','🌈','🔥','📎','🗂'];
-const DEFAULT_SHORTCUTS = [
+const EMOJI_FALLBACK=['🌟','📌','🔖','💡','🎯','⚡','🌈','🔥','📎','🗂'];
+const DEFAULT_SHORTCUTS=[
   {name:"네이버",  url:"https://naver.com",         iconKey:"naver"},
   {name:"구글",   url:"https://google.com",        iconKey:"google"},
   {name:"유튜브", url:"https://youtube.com",       iconKey:"youtube"},
@@ -324,192 +311,132 @@ const DEFAULT_SHORTCUTS = [
   {name:"GitHub", url:"https://github.com",        iconKey:"github"},
 ];
 
-let shortcuts = JSON.parse(localStorage.getItem('gw_u2_sc') || 'null') || DEFAULT_SHORTCUTS;
-let editMode = false;
-let dragSrc = null, dragMoved = false;
-let touchStartEl = null, touchStartIdx = null, touchTimer = null;
-function saveShortcuts(){ localStorage.setItem('gw_u2_sc', JSON.stringify(shortcuts)); }
+let shortcuts=JSON.parse(localStorage.getItem('gw_u2_sc')||'null')||DEFAULT_SHORTCUTS;
+let editMode=false, dragSrc=null, dragMoved=false;
+let touchStartEl=null, touchStartIdx=null, touchTimer=null;
+function saveShortcuts(){localStorage.setItem('gw_u2_sc',JSON.stringify(shortcuts));}
 
 function renderShortcuts(){
-  const grid = document.getElementById('shortcuts-grid');
-  grid.innerHTML = '';
-  const inEdit = isMobile ? editMode : true; // 데스크톱은 항상 드래그 가능
-  if(isMobile){ editMode ? grid.classList.add('edit-mode') : grid.classList.remove('edit-mode'); }
-
+  const grid=document.getElementById('shortcuts-grid');
+  grid.innerHTML='';
+  if(isMobile){editMode?grid.classList.add('edit-mode'):grid.classList.remove('edit-mode');}
   shortcuts.forEach((s,i)=>{
-    const el = document.createElement('div');
-    el.className = 'shortcut-item';
-    el.dataset.index = i;
-    el.draggable = true;
-    const ih = s.iconKey && SITE_ICONS[s.iconKey] ? SITE_ICONS[s.iconKey]
-      : `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#22253a"/><text x="25" y="33" font-size="22" text-anchor="middle">${s.emoji||'🌐'}</text></svg>`;
-    el.innerHTML = `<div class="shortcut-wrap"><div class="shortcut-icon">${ih}</div><button class="del-btn" aria-label="${s.name} 삭제">✕</button></div><div class="shortcut-label">${s.name}</div>`;
-
-    // 클릭 (드래그와 구분)
-    el.querySelector('.shortcut-icon').addEventListener('click', ()=>{ if(isMobile && editMode) return; if(dragMoved) return; window.open(s.url,'_blank','noopener'); });
-    el.querySelector('.del-btn').addEventListener('click', e=>{
-      e.stopPropagation();
-      if(confirm(`"${s.name}" 삭제할까요?`)){ shortcuts.splice(i,1); saveShortcuts(); renderShortcuts(); }
-    });
-
-    // 데스크톱 드래그
-    el.addEventListener('dragstart', e=>{ if(isMobile) return; dragSrc=i; el.style.opacity='0.4'; e.dataTransfer.effectAllowed='move'; });
-    el.addEventListener('dragend',   ()=>{ if(isMobile) return; el.style.opacity='1'; document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over')); });
-    el.addEventListener('dragover',  e=>{ if(isMobile) return; e.preventDefault(); e.dataTransfer.dropEffect='move'; el.classList.add('drag-over'); });
-    el.addEventListener('dragleave', ()=>{ if(isMobile) return; el.classList.remove('drag-over'); });
-    el.addEventListener('drop', e=>{ if(isMobile) return; e.preventDefault(); el.classList.remove('drag-over'); if(dragSrc===i) return; const tmp=shortcuts[dragSrc]; shortcuts[dragSrc]=shortcuts[i]; shortcuts[i]=tmp; saveShortcuts(); renderShortcuts(); });
-
-    // 모바일 터치 드래그
-    el.addEventListener('touchstart', e=>{ if(!editMode) return; touchStartEl=el; touchStartIdx=i; dragMoved=false; touchTimer=setTimeout(()=>{ el.classList.add('drag-active'); },150); }, {passive:true});
-    el.addEventListener('touchmove',  e=>{ if(!editMode||!touchStartEl) return; dragMoved=true; clearTimeout(touchTimer); e.preventDefault();
-      const t=e.touches[0]; const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');
-      document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));
-      if(target && target!==touchStartEl && target.dataset.index!==undefined) target.classList.add('drag-over');
-    }, {passive:false});
-    el.addEventListener('touchend', e=>{ if(!editMode) return; clearTimeout(touchTimer); touchStartEl?.classList.remove('drag-active');
-      const t=e.changedTouches[0]; const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');
-      document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));
-      if(target && target.dataset.index!==undefined && target.dataset.index!=touchStartIdx){
-        const ti=parseInt(target.dataset.index); const tmp=shortcuts[touchStartIdx]; shortcuts[touchStartIdx]=shortcuts[ti]; shortcuts[ti]=tmp; saveShortcuts(); renderShortcuts();
-      }
-      touchStartEl=null; touchStartIdx=null;
-    });
-
+    const el=document.createElement('div');
+    el.className='shortcut-item';
+    el.dataset.index=i;
+    el.draggable=true;
+    const ih=s.iconKey&&SITE_ICONS[s.iconKey]?SITE_ICONS[s.iconKey]
+      :`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#22253a"/><text x="25" y="33" font-size="22" text-anchor="middle">${s.emoji||'🌐'}</text></svg>`;
+    el.innerHTML=`<div class="shortcut-wrap"><div class="shortcut-icon">${ih}</div><button class="del-btn" aria-label="${s.name} 삭제">✕</button></div><div class="shortcut-label">${s.name}</div>`;
+    el.querySelector('.shortcut-icon').addEventListener('click',()=>{if(isMobile&&editMode)return;if(dragMoved)return;window.open(s.url,'_blank','noopener');});
+    el.querySelector('.del-btn').addEventListener('click',e=>{e.stopPropagation();if(confirm(`"${s.name}" 삭제할까요?`)){shortcuts.splice(i,1);saveShortcuts();renderShortcuts();}});
+    el.addEventListener('dragstart',e=>{if(isMobile)return;dragSrc=i;el.style.opacity='0.4';e.dataTransfer.effectAllowed='move';});
+    el.addEventListener('dragend',()=>{if(isMobile)return;el.style.opacity='1';document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));});
+    el.addEventListener('dragover',e=>{if(isMobile)return;e.preventDefault();e.dataTransfer.dropEffect='move';el.classList.add('drag-over');});
+    el.addEventListener('dragleave',()=>{if(isMobile)return;el.classList.remove('drag-over');});
+    el.addEventListener('drop',e=>{if(isMobile)return;e.preventDefault();el.classList.remove('drag-over');if(dragSrc===i)return;const tmp=shortcuts[dragSrc];shortcuts[dragSrc]=shortcuts[i];shortcuts[i]=tmp;saveShortcuts();renderShortcuts();});
+    el.addEventListener('touchstart',e=>{if(!editMode)return;touchStartEl=el;touchStartIdx=i;dragMoved=false;touchTimer=setTimeout(()=>{el.classList.add('drag-active');},150);},{passive:true});
+    el.addEventListener('touchmove',e=>{if(!editMode||!touchStartEl)return;dragMoved=true;clearTimeout(touchTimer);e.preventDefault();const t=e.touches[0];const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));if(target&&target!==touchStartEl&&target.dataset.index!==undefined)target.classList.add('drag-over');},{passive:false});
+    el.addEventListener('touchend',e=>{if(!editMode)return;clearTimeout(touchTimer);touchStartEl?.classList.remove('drag-active');const t=e.changedTouches[0];const target=document.elementFromPoint(t.clientX,t.clientY)?.closest('.shortcut-item');document.querySelectorAll('.shortcut-item').forEach(n=>n.classList.remove('drag-over'));if(target&&target.dataset.index!==undefined&&target.dataset.index!=touchStartIdx){const ti=parseInt(target.dataset.index);const tmp=shortcuts[touchStartIdx];shortcuts[touchStartIdx]=shortcuts[ti];shortcuts[ti]=tmp;saveShortcuts();renderShortcuts();}touchStartEl=null;touchStartIdx=null;});
     grid.appendChild(el);
   });
-
-  const add = document.createElement('div');
-  add.className = 'shortcut-item shortcut-add';
-  add.innerHTML = `<div class="shortcut-wrap"><div class="shortcut-icon"><span class="shortcut-add-plus">＋</span></div></div><div class="shortcut-label">추가</div>`;
-  add.addEventListener('click', ()=> document.getElementById('add-modal').classList.add('show'));
+  const add=document.createElement('div');
+  add.className='shortcut-item shortcut-add';
+  add.innerHTML=`<div class="shortcut-wrap"><div class="shortcut-icon"><span class="shortcut-add-plus">＋</span></div></div><div class="shortcut-label">추가</div>`;
+  add.addEventListener('click',()=>document.getElementById('add-modal').classList.add('show'));
   grid.appendChild(add);
 }
 
-const editToggle = document.getElementById('edit-toggle');
-editToggle.addEventListener('click', ()=>{
-  editMode = !editMode;
-  editToggle.textContent = editMode ? '완료' : '편집';
-  editToggle.classList.toggle('active', editMode);
+const editToggle=document.getElementById('edit-toggle');
+editToggle.addEventListener('click',()=>{
+  editMode=!editMode;
+  editToggle.textContent=editMode?'완료':'편집';
+  editToggle.classList.toggle('active',editMode);
   renderShortcuts();
 });
 
 // ── 시계 ─────────────────────────────────────
-const DAY_KR = ['일','월','화','수','목','금','토'];
+const DAY_KR=['일','월','화','수','목','금','토'];
 function updateClock(){
-  const n = new Date();
-  document.getElementById('clock-date').textContent = `${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일 (${DAY_KR[n.getDay()]})`;
-  document.getElementById('th').textContent = String(n.getHours()).padStart(2,'0');
-  document.getElementById('tm').textContent = String(n.getMinutes()).padStart(2,'0');
-  document.getElementById('ts').textContent = String(n.getSeconds()).padStart(2,'0');
+  const n=new Date();
+  document.getElementById('clock-date').textContent=`${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일 (${DAY_KR[n.getDay()]})`;
+  document.getElementById('th').textContent=String(n.getHours()).padStart(2,'0');
+  document.getElementById('tm').textContent=String(n.getMinutes()).padStart(2,'0');
+  document.getElementById('ts').textContent=String(n.getSeconds()).padStart(2,'0');
 }
 setInterval(updateClock,1000); updateClock();
 
 // ── 검색 & AI ─────────────────────────────────
-function getQuery(){ return (document.getElementById(isMobile?'sq-m':'sq-d')||{value:''}).value.trim(); }
-document.getElementById('sq-d').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch('naver'); });
-document.getElementById('sq-m').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch('naver'); });
-
-function doSearch(engine){
-  const q=getQuery(); if(!q) return;
-  window.open((engine==='naver'?'https://search.naver.com/search.naver?query=':'https://www.google.com/search?q=')+encodeURIComponent(q),'_blank','noopener');
-}
+function getQuery(){return document.getElementById(isMobile?'sq-m':'sq-d').value.trim();}
+document.getElementById('sq-d').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch('naver');});
+document.getElementById('sq-m').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch('naver');});
+function doSearch(engine){const q=getQuery();if(!q)return;window.open((engine==='naver'?'https://search.naver.com/search.naver?query=':'https://www.google.com/search?q=')+encodeURIComponent(q),'_blank','noopener');}
 function doAI(ai){
-  const q=getQuery(); if(!q) return;
-  if(ai==='gemini'){
-    navigator.clipboard.writeText(q).catch(()=>{});
-    window.open('https://gemini.google.com/app','_blank','noopener');
-    showToast('질문이 클립보드에 복사됐습니다. Ctrl+V로 붙여넣기 해주세요.');
-    return;
-  }
+  const q=getQuery();if(!q)return;
+  if(ai==='gemini'){navigator.clipboard.writeText(q).catch(()=>{});window.open('https://gemini.google.com/app','_blank','noopener');showToast('질문이 클립보드에 복사됐습니다. Ctrl+V로 붙여넣기 해주세요.');return;}
   const urls={chatgpt:`https://chatgpt.com/?q=${encodeURIComponent(q)}&hints=search&ref=ext`,claude:`https://claude.ai/new?q=${encodeURIComponent(q)}`,perplexity:`https://www.perplexity.ai/search?q=${encodeURIComponent(q)}&focus=internet`};
   window.open(urls[ai],'_blank','noopener');
 }
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.style.opacity='1';
-  clearTimeout(t._tid); t._tid=setTimeout(()=>{ t.style.opacity='0'; },3500);
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.opacity='1';clearTimeout(t._tid);t._tid=setTimeout(()=>{t.style.opacity='0';},3500);}
 
 // ── 모달 ─────────────────────────────────────
-function closeModal(){ document.getElementById('add-modal').classList.remove('show'); document.getElementById('new-name').value=''; document.getElementById('new-url').value=''; }
-document.getElementById('btn-cancel').addEventListener('click', closeModal);
-document.getElementById('add-modal').addEventListener('click', e=>{ if(e.target.id==='add-modal') closeModal(); });
-document.getElementById('btn-confirm-add').addEventListener('click', ()=>{
+function closeModal(){document.getElementById('add-modal').classList.remove('show');document.getElementById('new-name').value='';document.getElementById('new-url').value='';}
+document.getElementById('btn-cancel').addEventListener('click',closeModal);
+document.getElementById('add-modal').addEventListener('click',e=>{if(e.target.id==='add-modal')closeModal();});
+document.getElementById('btn-confirm-add').addEventListener('click',()=>{
   const name=document.getElementById('new-name').value.trim();
   let url=document.getElementById('new-url').value.trim();
-  if(!name||!url){ alert('이름과 URL을 입력해주세요.'); return; }
-  if(!url.startsWith('http')) url='https://'+url;
+  if(!name||!url){alert('이름과 URL을 입력해주세요.');return;}
+  if(!url.startsWith('http'))url='https://'+url;
   shortcuts.push({name,url,emoji:EMOJI_FALLBACK[Math.floor(Math.random()*EMOJI_FALLBACK.length)]});
-  saveShortcuts(); renderShortcuts(); closeModal();
+  saveShortcuts();renderShortcuts();closeModal();
 });
 
 // ── 날씨 ─────────────────────────────────────
 const WX_ICONS={0:'☀️',1:'🌤',2:'⛅',3:'🌥',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',85:'🌨',86:'❄️',95:'⛈',96:'⛈',99:'⛈'};
 const WX_DESC={0:'맑음',1:'대체로 맑음',2:'구름 조금',3:'흐림',45:'안개',48:'짙은 안개',51:'이슬비',53:'이슬비',55:'이슬비',61:'약한 비',63:'비',65:'강한 비',71:'약한 눈',73:'눈',75:'강한 눈',80:'소나기',82:'폭우',95:'뇌우',99:'뇌우'};
-
-// 저장된 위치 or 기본값 서울
-let currentLocation = JSON.parse(localStorage.getItem('gw_location') || 'null') || {name:'서울특별시', lat:37.5665, lon:126.9780};
-
-function saveLocation(loc){ localStorage.setItem('gw_location', JSON.stringify(loc)); }
+let currentLocation=JSON.parse(localStorage.getItem('gw_location')||'null')||{name:'서울특별시',lat:37.5665,lon:126.9780};
+function saveLocation(loc){localStorage.setItem('gw_location',JSON.stringify(loc));}
 
 function changeLocation(){
-  const input = prompt('도시명을 입력하세요\n(예: 부산광역시, 제주시, 수원시)', currentLocation.name);
-  if(!input || !input.trim()) return;
-  const query = input.trim();
-  // Nominatim으로 좌표 검색
+  const input=prompt('도시명을 입력하세요\n(예: 부산광역시, 제주시, 수원시)',currentLocation.name);
+  if(!input||!input.trim())return;
+  const query=input.trim();
   fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&accept-language=ko`)
-    .then(r=>r.json())
-    .then(data=>{
-      if(!data||!data.length){ alert(`"${query}" 위치를 찾을 수 없습니다.`); return; }
-      const {lat, lon, display_name} = data[0];
-      // 짧은 이름 추출
-      const shortName = display_name.split(',')[0].trim();
-      currentLocation = {name: shortName, lat: parseFloat(lat), lon: parseFloat(lon)};
+    .then(r=>r.json()).then(data=>{
+      if(!data||!data.length){alert(`"${query}" 위치를 찾을 수 없습니다.`);return;}
+      const {lat,lon,display_name}=data[0];
+      const shortName=display_name.split(',')[0].trim();
+      currentLocation={name:shortName,lat:parseFloat(lat),lon:parseFloat(lon)};
       saveLocation(currentLocation);
-      document.getElementById('location-label').textContent = shortName;
+      document.getElementById('location-label').textContent=shortName;
       loadWeather();
-    })
-    .catch(()=>{ alert('위치 검색에 실패했습니다. 다시 시도해주세요.'); });
+    }).catch(()=>{alert('위치 검색에 실패했습니다.');});
 }
 
 async function loadWeather(){
   const el=document.getElementById('weather-content');
   el.innerHTML='<div class="weather-loading">날씨 불러오는 중...</div>';
-  document.getElementById('location-label').textContent = currentLocation.name;
+  document.getElementById('location-label').textContent=currentLocation.name;
   try{
     const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=8`);
-    const d=await res.json(); const c=d.current, dl=d.daily, hl=d.hourly; const now=new Date();
+    const d=await res.json(); const c=d.current,dl=d.daily,hl=d.hourly; const now=new Date();
+    const nowHour=now.getHours();
+    const todayStr=now.toISOString().slice(0,10);
+    const hourlyTemps=[];
+    for(let h=0;h<24;h+=2){const idx=hl.time.findIndex(t=>t===`${todayStr}T${String(h).padStart(2,'0')}:00`);if(idx!==-1)hourlyTemps.push({hour:h,temp:Math.round(hl.temperature_2m[idx])});}
+    const relevantHours=hourlyTemps.filter(p=>p.hour>=Math.max(0,nowHour-4)&&p.hour<=Math.min(23,nowHour+8)).slice(0,6);
 
-    // 오늘 시간별 기온 (현재 시각 기준 앞뒤 포함 6개 포인트)
-    const nowHour = now.getHours();
-    const todayStr = now.toISOString().slice(0,10);
-    const hourlyTemps = [];
-    for(let h=0; h<24; h+=2){
-      const idx = hl.time.findIndex(t => t === `${todayStr}T${String(h).padStart(2,'0')}:00`);
-      if(idx !== -1) hourlyTemps.push({hour: h, temp: Math.round(hl.temperature_2m[idx])});
-    }
-    // 현재 시각 기준 ±4시간 범위 6포인트
-    const relevantHours = hourlyTemps.filter(p => p.hour >= Math.max(0, nowHour-4) && p.hour <= Math.min(23, nowHour+8)).slice(0,6);
-
-    // SVG 라인 차트 생성
     function makeTempChart(points){
-      if(!points.length) return '';
-      const W=100, H=48, pad=10;
-      const temps = points.map(p=>p.temp);
-      const mn=Math.min(...temps), mx=Math.max(...temps);
-      const range = mx-mn || 1;
-      const xs = points.map((_,i)=> pad + i*(W-pad*2)/(points.length-1||1));
-      const ys = points.map(p=> H-8 - ((p.temp-mn)/range)*(H-20));
-      const pathD = xs.map((x,i)=>`${i===0?'M':'L'}${x},${ys[i]}`).join(' ');
-      const dots = points.map((p,i)=>`
-        <circle cx="${xs[i]}" cy="${ys[i]}" r="3.5" fill="#f0c060"/>
-        <text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="10" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text>
-        <text x="${xs[i]}" y="${H+4}" text-anchor="middle" font-size="9" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>
-      `).join('');
-      return `<svg viewBox="0 0 ${W} ${H+8}" width="100%" style="display:block;margin-top:6px;">
-        <polyline points="${xs.map((x,i)=>`${x},${ys[i]}`).join(' ')}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5" stroke-linejoin="round"/>
-        ${dots}
-      </svg>`;
+      if(!points.length)return'';
+      const W=100,H=48,pad=10;
+      const temps=points.map(p=>p.temp);
+      const mn=Math.min(...temps),mx=Math.max(...temps);
+      const range=mx-mn||1;
+      const xs=points.map((_,i)=>pad+i*(W-pad*2)/(points.length-1||1));
+      const ys=points.map(p=>H-8-((p.temp-mn)/range)*(H-20));
+      const dots=points.map((p,i)=>`<circle cx="${xs[i]}" cy="${ys[i]}" r="3.5" fill="#f0c060"/><text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="10" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text><text x="${xs[i]}" y="${H+4}" text-anchor="middle" font-size="9" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>`).join('');
+      return`<svg viewBox="0 0 ${W} ${H+8}" width="100%" style="display:block;margin-top:6px;"><polyline points="${xs.map((x,i)=>`${x},${ys[i]}`).join(' ')}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5" stroke-linejoin="round"/>${dots}</svg>`;
     }
 
     let html=`<div class="weather-scroll">
@@ -518,65 +445,21 @@ async function loadWeather(){
           <div style="display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;">
             <div class="wx-label">오늘</div>
             <div class="wx-date">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
-            <div class="wx-emoji" style="font-size:36px;margin:4px 0;">${WX_ICONS[c.weathercode]||'🌡'}</div>
+            <div style="font-size:36px;margin:4px 0;cursor:pointer;" onclick="window.open('https://weather.naver.com','_blank','noopener')" title="네이버 날씨">${WX_ICONS[c.weathercode]||'🌡'}</div>
             <div class="wx-temp-hi" style="font-size:20px;">${Math.round(c.temperature_2m)}°C</div>
             <div class="wx-desc" style="font-size:11px;">${WX_DESC[c.weathercode]||''}</div>
             <div class="wx-temp-lo" style="font-size:11px;margin-top:2px;">체감 ${Math.round(c.apparent_temperature)}°</div>
           </div>
-          <div style="flex:1;min-width:0;">
-            ${makeTempChart(relevantHours)}
-          </div>
+          <div style="flex:1;min-width:0;">${makeTempChart(relevantHours)}</div>
         </div>
       </div>`;
     for(let i=1;i<8;i++){
-      const dt=new Date(dl.time[i]); const lbl=i===1?'내일':DAY_KR[dt.getDay()]; const wc=dl.weathercode[i];
+      const dt=new Date(dl.time[i]);const lbl=i===1?'내일':DAY_KR[dt.getDay()];const wc=dl.weathercode[i];
       html+=`<div class="wx-card"><div class="wx-label">${lbl}</div><div class="wx-date">${dt.getMonth()+1}/${dt.getDate()}</div><div class="wx-emoji">${WX_ICONS[wc]||'🌡'}</div><div class="wx-temp-hi">${Math.round(dl.temperature_2m_max[i])}°</div><div class="wx-temp-lo">${Math.round(dl.temperature_2m_min[i])}°</div><div class="wx-desc">${WX_DESC[wc]||''}</div><div class="wx-rain">💧${dl.precipitation_probability_max[i]}%</div></div>`;
     }
-    html+=`</div>`; el.innerHTML=html;
-  }catch(e){ el.innerHTML='<div class="weather-loading">날씨를 불러오지 못했습니다.</div>'; }
-}
-
-// ── 뉴스 ─────────────────────────────────────
-async function loadNews(){
-  const wrap=document.getElementById('news-content');
-  // 뉴스 컨테이너: 데스크톱=grid, 모바일=list
-  wrap.className = isMobile ? 'news-list' : 'news-grid';
-  if(NAVER_CLIENT_ID==='YOUR_NAVER_CLIENT_ID'){ await loadNewsFallback(wrap); return; }
-  try{
-    const res=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://openapi.naver.com/v1/search/news.json?query=뉴스&display=10&sort=date')}`,{headers:{'X-Naver-Client-Id':NAVER_CLIENT_ID,'X-Naver-Client-Secret':NAVER_CLIENT_SECRET}});
-    const raw=await res.json(); const data=JSON.parse(raw.contents);
-    if(!data.items||!data.items.length) throw new Error('empty');
-    wrap.innerHTML='';
-    data.items.forEach(item=>{
-      const title=item.title.replace(/<[^>]+>/g,'');
-      const pub=new Date(item.pubDate).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
-      const card=document.createElement('div'); card.className='news-card';
-      card.innerHTML=`<div class="news-source">네이버 뉴스</div><div class="news-title">${title}</div><div class="news-time">${pub}</div>`;
-      card.addEventListener('click',()=>window.open(item.link,'_blank','noopener'));
-      wrap.appendChild(card);
-    });
-  }catch(e){ await loadNewsFallback(wrap); }
-}
-async function loadNewsFallback(wrap){
-  try{
-    const res=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent('https://news.google.com/rss/search?q=한국+뉴스&hl=ko&gl=KR&ceid=KR:ko'));
-    const data=await res.json();
-    const xml=new DOMParser().parseFromString(data.contents,'text/xml');
-    const items=Array.from(xml.querySelectorAll('item')).slice(0,10);
-    if(!items.length) throw new Error('empty');
-    wrap.innerHTML='';
-    items.forEach(item=>{
-      const title=item.querySelector('title')?.textContent||'';
-      const link=item.querySelector('link')?.textContent||'#';
-      const pub=item.querySelector('pubDate')?.textContent||'';
-      const source=item.querySelector('source')?.textContent||'뉴스';
-      const t=pub?new Date(pub).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      const card=document.createElement('div'); card.className='news-card';
-      card.innerHTML=`<div class="news-source">${source}</div><div class="news-title">${title}</div><div class="news-time">${t}</div>`;
-      card.addEventListener('click',()=>window.open(link,'_blank','noopener'));
-      wrap.appendChild(card);
-    });
-  }catch(e){ wrap.innerHTML='<div class="news-loading">뉴스를 불러오지 못했습니다.</div>'; }
+    html+=`</div>`;
+    el.innerHTML=html;
+  }catch(e){el.innerHTML='<div class="weather-loading">날씨를 불러오지 못했습니다.</div>';}
 }
 
 renderShortcuts(); loadWeather();
