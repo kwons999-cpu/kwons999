@@ -33,17 +33,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .shortcut-add .shortcut-icon{background:rgba(34,37,58,0.6);border-style:dashed;border-color:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;}
 .wx-card{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.05);}
 .wx-card.today{background:rgba(66,133,244,0.13);border-color:rgba(66,133,244,0.28);}
-.wx-label{font-weight:700;color:#8890aa;}
-.wx-date{color:#445;}
-.wx-temp-hi{font-weight:700;color:#f0c060;}
-.wx-temp-lo{color:#7baaf7;}
-.wx-desc{color:#8890aa;text-align:center;line-height:1.4;}
-.wx-rain{color:#7baaf7;}
-.weather-loading{color:#556;font-size:13px;text-align:center;line-height:1.8;}
-.news-card{border:1px solid rgba(255,255,255,0.06);cursor:pointer;background:rgba(255,255,255,0.02);}
-.news-source{color:#03C75A;font-weight:600;}
-.news-title{font-weight:500;color:#c0c8e0;line-height:1.5;}
-.news-time{color:#445;}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.68);z-index:200;}
 .modal-overlay.show{display:flex;}
 .modal-box input{width:100%;border:1px solid #2e3245;background:#13151e;color:#e8eaf0;outline:none;}
@@ -55,12 +44,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .drag-over .shortcut-icon{box-shadow:0 0 0 2.5px #4285F4 !important;}
 .drag-active .shortcut-icon{opacity:0.5;transform:scale(0.92);}
 
-/* ════════════ 데스크톱 ════════════ */
+/* ════════ 데스크톱 ════════ */
 body.desktop .gateway{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem;}
 body.desktop .clock-layer{text-align:center;margin-bottom:1.8rem;margin-top:2rem;}
 body.desktop #clock-date{font-size:clamp(14px,1.6vw,22px);letter-spacing:1px;}
 body.desktop #clock-time{font-size:clamp(28px,3.8vw,52px);gap:0;}
-
 body.desktop .search-layer{display:flex;align-items:center;gap:8px;max-width:920px;margin:0 auto 1.8rem;flex-wrap:wrap;justify-content:center;}
 body.desktop .search-layer input{flex:1;min-width:240px;height:48px;border-radius:24px;border:1px solid rgba(255,255,255,0.12);background:rgba(22,25,38,0.97);padding:0 22px;font-size:15px;color:#e8eaf0;outline:none;}
 body.desktop .search-layer input::placeholder{color:#556;}
@@ -78,11 +66,10 @@ body.desktop .ai-wrap:hover .ai-tooltip{opacity:1;}
 body.desktop .btn-ai{height:48px;width:48px;border-radius:50%;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s;padding:0;}
 body.desktop .btn-ai:hover{transform:translateY(-2px) scale(1.08);}
 body.desktop .btn-ai svg{width:26px;height:26px;display:block;}
-body.desktop .btn-chatgpt{background:#10a37f;box-shadow:0 2px 12px rgba(16,163,127,0.35);}
-body.desktop .btn-gemini{background:#1a73e8;box-shadow:0 2px 12px rgba(26,115,232,0.35);}
-body.desktop .btn-claude-ai{background:#cc785c;box-shadow:0 2px 12px rgba(204,120,92,0.35);}
-body.desktop .btn-perplexity{background:#20b2aa;box-shadow:0 2px 12px rgba(32,178,170,0.35);}
-
+body.desktop .btn-chatgpt{background:#10a37f;}
+body.desktop .btn-gemini{background:#1a73e8;}
+body.desktop .btn-claude-ai{background:#cc785c;}
+body.desktop .btn-perplexity{background:#20b2aa;}
 body.desktop .shortcuts-layer{padding:1rem 1.25rem;margin-bottom:1.6rem;}
 body.desktop .shortcuts-grid{display:flex;flex-wrap:nowrap;gap:8px;justify-content:center;align-items:flex-start;overflow-x:auto;}
 body.desktop .shortcuts-grid::-webkit-scrollbar{height:0;}
@@ -90,25 +77,15 @@ body.desktop .shortcut-item{gap:6px;min-width:72px;flex-shrink:0;padding-top:10p
 body.desktop .shortcut-wrap{width:56px;height:56px;}
 body.desktop .shortcut-icon{width:56px;height:56px;border-radius:14px;transition:box-shadow 0.15s;}
 body.desktop .shortcut-item:hover .shortcut-icon{box-shadow:0 0 0 2.5px rgba(255,255,255,0.3);}
-body.desktop .shortcut-label{font-size:11px;max-width:68px;margin-top:0;}
+body.desktop .shortcut-label{font-size:11px;max-width:68px;}
 body.desktop .shortcut-item:hover .del-btn{display:flex;}
 body.desktop .shortcut-add-plus{font-size:24px;color:#555;}
-
 body.desktop .bottom-col{display:flex;flex-direction:column;gap:16px;}
 body.desktop .weather-layer{padding:1.1rem 0;position:relative;}
 body.desktop .weather-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;max-width:100%;justify-content:center;}
-body.desktop .weather-scroll::-webkit-scrollbar{height:4px;}
-body.desktop .weather-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px;}
-body.desktop .wx-card{border-radius:14px;padding:12px 6px 10px;min-width:57px;max-width:88px;flex:1;}
+body.desktop .wx-card{border-radius:14px;padding:12px 6px 10px;min-width:63px;max-width:98px;flex:1;}
 body.desktop .wx-card.today{min-width:180px;max-width:220px;}
-body.desktop .wx-label{font-size:12px;margin-bottom:1px;}
-body.desktop .wx-date{font-size:11px;margin-bottom:8px;}
-body.desktop .wx-emoji{font-size:38px;line-height:1;margin-bottom:8px;}
-body.desktop .wx-temp-hi{font-size:17px;}
-body.desktop .wx-temp-lo{font-size:13px;margin-top:2px;}
-body.desktop .wx-desc{font-size:11px;margin-top:4px;}
-body.desktop .wx-rain{font-size:11px;margin-top:3px;}
-body.desktop .weather-loading{padding:2rem 0;}
+body.desktop .weather-loading{padding:2rem 0;color:#556;font-size:13px;text-align:center;line-height:1.8;}
 body.desktop .modal-overlay{align-items:center;justify-content:center;}
 body.desktop .modal-box{background:#1a1d26;border-radius:18px;padding:1.75rem;width:360px;border:1px solid #2e3245;box-shadow:0 8px 40px rgba(0,0,0,0.4);}
 body.desktop .modal-box h3{font-size:15px;font-weight:700;margin-bottom:1.25rem;color:#e8eaf0;}
@@ -117,12 +94,11 @@ body.desktop .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin
 body.desktop .modal-actions button{height:38px;padding:0 20px;border-radius:10px;font-size:13px;}
 body.desktop .modal-handle{display:none;}
 
-/* ════════════ 모바일 ════════════ */
+/* ════════ 모바일 ════════ */
 body.mobile .gateway{max-width:480px;margin:0 auto;padding:env(safe-area-inset-top,16px) 16px calc(env(safe-area-inset-bottom,0px) + 80px);}
 body.mobile .clock-layer{text-align:center;padding:20px 0 14px;margin-top:1.5rem;}
 body.mobile #clock-date{font-size:clamp(12px,3.5vw,15px);letter-spacing:0.3px;}
 body.mobile #clock-time{font-size:clamp(26px,11vw,46px);gap:0;line-height:1;}
-
 body.mobile .search-layer{margin-bottom:10px;}
 body.mobile .search-box{display:flex;align-items:center;background:rgba(22,25,38,0.97);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;}
 body.mobile .search-box input{flex:1;height:48px;background:transparent;border:none;padding:0 14px;font-size:15px;color:#e8eaf0;outline:none;}
@@ -137,7 +113,6 @@ body.mobile .btn-s-naver .btn-s-inner span{color:#03C75A;}
 body.mobile .btn-s-google .btn-s-inner span{color:#7baaf7;}
 body.mobile .btn-s-naver{border-right:1px solid rgba(255,255,255,0.08);}
 body.mobile .google-dots span{width:5px;height:5px;}
-
 body.mobile .ai-row{display:flex;gap:6px;margin-bottom:12px;}
 body.mobile .btn-ai{height:42px;border-radius:21px;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;gap:5px;flex:1;font-size:11px;font-weight:700;color:#fff;transition:all 0.15s;}
 body.mobile .btn-ai:active{opacity:0.8;transform:scale(0.97);}
@@ -146,11 +121,10 @@ body.mobile .btn-chatgpt{background:#10a37f;}
 body.mobile .btn-gemini{background:#1a73e8;}
 body.mobile .btn-claude-ai{background:#cc785c;}
 body.mobile .btn-perplexity{background:#20b2aa;}
-
 body.mobile .shortcuts-layer{padding:12px 10px;margin-bottom:12px;}
 body.mobile .edit-toggle{display:block;text-align:right;font-size:12px;color:#556;margin-bottom:10px;cursor:pointer;}
 body.mobile .edit-toggle.active{color:#7baaf7;}
-body.mobile .shortcuts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px 4px;}
+body.mobile .shortcuts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;}
 body.mobile .shortcut-item{gap:5px;-webkit-user-select:none;}
 body.mobile .shortcut-wrap{width:56px;height:56px;}
 body.mobile .shortcut-icon{width:56px;height:56px;border-radius:14px;}
@@ -160,21 +134,13 @@ body.mobile .edit-mode .del-btn{display:flex;}
 body.mobile .edit-mode .shortcut-icon{animation:wiggle 0.4s infinite alternate;}
 @keyframes wiggle{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
 body.mobile .shortcut-add-plus{font-size:22px;color:#555;}
-
 body.mobile .bottom-col{display:flex;flex-direction:column;gap:12px;}
 body.mobile .weather-layer{padding:12px 8px;position:relative;}
 body.mobile .weather-scroll{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;}
 body.mobile .weather-scroll::-webkit-scrollbar{height:0;}
 body.mobile .wx-card{border-radius:10px;padding:8px 6px 7px;min-width:96px;flex:1;}
 body.mobile .wx-card.today{min-width:160px;max-width:200px;}
-body.mobile .wx-label{font-size:10px;margin-bottom:1px;}
-body.mobile .wx-date{font-size:9px;margin-bottom:4px;}
-body.mobile .wx-emoji{font-size:20px;line-height:1;margin-bottom:4px;}
-body.mobile .wx-temp-hi{font-size:12px;}
-body.mobile .wx-temp-lo{font-size:10px;margin-top:1px;}
-body.mobile .wx-desc{font-size:9px;margin-top:2px;}
-body.mobile .wx-rain{font-size:9px;margin-top:2px;}
-body.mobile .weather-loading{padding:1.5rem 0;}
+body.mobile .weather-loading{padding:1.5rem 0;color:#556;font-size:13px;text-align:center;line-height:1.8;}
 body.mobile .modal-overlay{align-items:flex-end;justify-content:center;}
 body.mobile .modal-box{background:#1a1d26;border-radius:20px 20px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 20px);width:100%;border-top:1px solid #2e3245;}
 body.mobile .modal-handle{width:36px;height:4px;background:#333;border-radius:2px;margin:0 auto 16px;}
@@ -186,8 +152,6 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
 </head>
 <body>
 <div class="gateway">
-
-  <!-- 시계 -->
   <div class="clock-layer">
     <div class="clock-wrap">
       <span id="clock-date"></span>
@@ -201,15 +165,10 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
     </div>
   </div>
 
-  <!-- 검색 데스크톱 -->
   <div class="search-layer" id="search-desktop">
     <input type="text" id="sq-d" placeholder="검색 또는 AI에게 질문을 입력하세요..."/>
-    <button class="btn-search btn-naver" onclick="doSearch('naver')">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>NAVER
-    </button>
-    <button class="btn-search btn-google" onclick="doSearch('google')">
-      <div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div>Google
-    </button>
+    <button class="btn-search btn-naver" onclick="doSearch('naver')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>NAVER</button>
+    <button class="btn-search btn-google" onclick="doSearch('google')"><div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div>Google</button>
     <div class="ai-divider"></div>
     <div class="ai-wrap"><button class="btn-ai btn-chatgpt" onclick="doAI('chatgpt')" aria-label="ChatGPT"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg></button><span class="ai-tooltip">ChatGPT</span></div>
     <div class="ai-wrap"><button class="btn-ai btn-gemini" onclick="doAI('gemini')" aria-label="Gemini"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg></button><span class="ai-tooltip">Gemini</span></div>
@@ -217,23 +176,17 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
     <div class="ai-wrap"><button class="btn-ai btn-perplexity" onclick="doAI('perplexity')" aria-label="Perplexity"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="ai-tooltip">Perplexity</span></div>
   </div>
 
-  <!-- 검색 모바일 -->
   <div class="search-layer" id="search-mobile">
     <div class="search-box">
       <input type="text" id="sq-m" placeholder="검색 또는 AI에게 질문..."/>
       <div class="search-divider"></div>
       <div class="search-btns">
-        <button class="btn-s btn-s-naver" onclick="doSearch('naver')">
-          <div class="btn-s-inner"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>NAVER</span></div>
-        </button>
-        <button class="btn-s btn-s-google" onclick="doSearch('google')">
-          <div class="btn-s-inner"><div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div><span>Google</span></div>
-        </button>
+        <button class="btn-s btn-s-naver" onclick="doSearch('naver')"><div class="btn-s-inner"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>NAVER</span></div></button>
+        <button class="btn-s btn-s-google" onclick="doSearch('google')"><div class="btn-s-inner"><div class="google-dots"><span class="gd1"></span><span class="gd2"></span><span class="gd3"></span><span class="gd4"></span></div><span>Google</span></div></button>
       </div>
     </div>
   </div>
 
-  <!-- AI 버튼 모바일 -->
   <div class="ai-row" id="ai-mobile">
     <button class="btn-ai btn-chatgpt" onclick="doAI('chatgpt')"><svg viewBox="0 0 41 41" fill="none"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.205-3.439A10.081 10.081 0 0 0 9.116 5.23a9.963 9.963 0 0 0-6.664 4.827 10.078 10.078 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.205 3.44 10.079 10.079 0 0 0 10.272-4.948 9.967 9.967 0 0 0 6.664-4.834 10.079 10.079 0 0 0-1.012-11.683zm-15.115 21.169a7.473 7.473 0 0 1-4.797-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.65zm-16.124-6.882a7.474 7.474 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.09-17.503a7.474 7.474 0 0 1 3.909-3.297V19.7a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L5.057 23.565a7.504 7.504 0 0 1-.854-9.911zm27.533 6.441l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18.058z" fill="white"/></svg>ChatGPT</button>
     <button class="btn-ai btn-gemini" onclick="doAI('gemini')"><svg viewBox="0 0 28 28" fill="none"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg>Gemini</button>
@@ -241,13 +194,11 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
     <button class="btn-ai btn-perplexity" onclick="doAI('perplexity')"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Perplexity</button>
   </div>
 
-  <!-- 바로가기 -->
   <div class="shortcuts-layer">
     <span class="edit-toggle" id="edit-toggle">편집</span>
     <div class="shortcuts-grid" id="shortcuts-grid"></div>
   </div>
 
-  <!-- 날씨 -->
   <div class="bottom-col">
     <div class="weather-layer">
       <button id="location-btn" onclick="changeLocation()" style="position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#8890aa;font-size:11px;padding:3px 9px;border-radius:20px;cursor:pointer;z-index:2;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.13)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">📍 <span id="location-label">서울특별시</span></button>
@@ -256,16 +207,7 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
   </div>
 </div>
 
-  <div id="debug-btn" style="position:fixed;bottom:20px;right:16px;z-index:999;">
-    <button onclick="
-      const w=window.innerWidth;
-      const ua=navigator.userAgent;
-      const cls=document.body.className;
-      const grid=document.getElementById('shortcuts-grid');
-      const cols=getComputedStyle(grid).gridTemplateColumns;
-      alert('클래스: '+cls+'\n화면폭: '+w+'px\n그리드: '+cols+'\nUA: '+ua.slice(0,60));
-    " style="background:#4285F4;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;">진단</button>
-  </div>
+<div id="toast"></div>
 
 <div class="modal-overlay" id="add-modal">
   <div class="modal-box">
@@ -281,50 +223,47 @@ body.mobile .modal-actions button{flex:1;height:44px;border-radius:10px;font-siz
 </div>
 
 <script>
-// ── 환경 감지 ─────────────────────────────────
-const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
-document.body.classList.add(isMobile ? 'mobile' : 'desktop');
-document.getElementById('search-desktop').style.display = isMobile ? 'none' : '';
-document.getElementById('search-mobile').style.display  = isMobile ? '' : 'none';
-document.getElementById('ai-mobile').style.display      = isMobile ? '' : 'none';
-if(!isMobile) document.getElementById('edit-toggle').style.display = 'none';
+const isMobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||window.innerWidth<768;
+document.body.classList.add(isMobile?'mobile':'desktop');
+document.getElementById('search-desktop').style.display=isMobile?'none':'';
+document.getElementById('search-mobile').style.display=isMobile?'':'none';
+document.getElementById('ai-mobile').style.display=isMobile?'':'none';
+if(!isMobile)document.getElementById('edit-toggle').style.display='none';
 
-// ── API 키 ────────────────────────────────────
-const NAVER_CLIENT_ID     = 'YOUR_NAVER_CLIENT_ID';
-const NAVER_CLIENT_SECRET = 'YOUR_NAVER_CLIENT_SECRET';
+const NAVER_CLIENT_ID='YOUR_NAVER_CLIENT_ID';
+const NAVER_CLIENT_SECRET='YOUR_NAVER_CLIENT_SECRET';
 
-// ── 아이콘 ────────────────────────────────────
-const SITE_ICONS = {
-  naver:   `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><text x="25" y="35" font-size="28" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">N</text></svg>`,
-  google:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 22v6h8.5c-.4 2-1.5 3.7-3.1 4.8l4.9 3.8C38.3 33.3 40 29.4 40 25c0-1-.1-2-.3-3H25z" fill="#4285F4"/><path d="M13.6 29.8A14 14 0 0125 11.3c3.3 0 6.3 1.2 8.6 3.1L38 9.9C34.4 6.7 30 4.8 25 4.8 16 4.8 8.4 10.5 5.6 18.6l8 6.2z" fill="#34A853"/><path d="M5.6 18.6A14 14 0 005 25c0 2.3.4 4.5 1.1 6.5l7.8-6.1-.4-1.4-8-5.4z" fill="#FBBC05"/><path d="M25 39c4.9 0 9-1.6 12-4.4l-4.9-3.8c-2 1.3-4.5 2.1-7.1 2.1-5.3 0-9.9-3.6-11.5-8.5l-7.9 6.1C8.4 38.4 16 43.2 25 43.2z" fill="#EA4335"/></svg>`,
-  sogang:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#8B1A1A"/><text x="25" y="30" font-size="10" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle" fill="white">SGU</text><text x="25" y="42" font-size="8" font-family="Arial,sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.8)">MAIL</text></svg>`,
-  gmail:   `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M8 14h34v22H8z" fill="#F1F3F4"/><path d="M8 14l17 13L42 14" fill="none" stroke="#EA4335" stroke-width="2"/><path d="M8 14v22h6V22l11 8 11-8v14h6V14" fill="white"/><path d="M8 14l17 13L42 14H8z" fill="#EA4335"/><path d="M14 22v14H8V14l6 8zm22 0v14h6V14l-6 8z" fill="#C5221F"/></svg>`,
-  hansol:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="10" fill="#1E4DB7"/><text x="25" y="31" font-size="16" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">H</text><rect x="16" y="34" width="18" height="3" rx="1.5" fill="white" opacity="0.6"/></svg>`,
+const SITE_ICONS={
+  naver:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><text x="25" y="35" font-size="28" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">N</text></svg>`,
+  google:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 22v6h8.5c-.4 2-1.5 3.7-3.1 4.8l4.9 3.8C38.3 33.3 40 29.4 40 25c0-1-.1-2-.3-3H25z" fill="#4285F4"/><path d="M13.6 29.8A14 14 0 0125 11.3c3.3 0 6.3 1.2 8.6 3.1L38 9.9C34.4 6.7 30 4.8 25 4.8 16 4.8 8.4 10.5 5.6 18.6l8 6.2z" fill="#34A853"/><path d="M5.6 18.6A14 14 0 005 25c0 2.3.4 4.5 1.1 6.5l7.8-6.1-.4-1.4-8-5.4z" fill="#FBBC05"/><path d="M25 39c4.9 0 9-1.6 12-4.4l-4.9-3.8c-2 1.3-4.5 2.1-7.1 2.1-5.3 0-9.9-3.6-11.5-8.5l-7.9 6.1C8.4 38.4 16 43.2 25 43.2z" fill="#EA4335"/></svg>`,
+  sogang:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#8B1A1A"/><text x="25" y="30" font-size="10" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle" fill="white">SGU</text><text x="25" y="42" font-size="8" font-family="Arial,sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.8)">MAIL</text></svg>`,
+  gmail:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M8 14h34v22H8z" fill="#F1F3F4"/><path d="M8 14l17 13L42 14" fill="none" stroke="#EA4335" stroke-width="2"/><path d="M8 14v22h6V22l11 8 11-8v14h6V14" fill="white"/><path d="M8 14l17 13L42 14H8z" fill="#EA4335"/><path d="M14 22v14H8V14l6 8zm22 0v14h6V14l-6 8z" fill="#C5221F"/></svg>`,
+  hansol:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="10" fill="#1E4DB7"/><text x="25" y="31" font-size="16" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="white">H</text><rect x="16" y="34" width="18" height="3" rx="1.5" fill="white" opacity="0.6"/></svg>`,
   calendar:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#4285F4"/><rect x="8" y="16" width="34" height="26" rx="3" fill="white"/><rect x="8" y="16" width="34" height="10" rx="3" fill="#4285F4"/><rect x="8" y="21" width="34" height="5" fill="#4285F4"/><text x="25" y="38" font-size="14" font-weight="900" font-family="Arial Black,sans-serif" text-anchor="middle" fill="#4285F4">31</text><rect x="16" y="10" width="4" height="8" rx="2" fill="white"/><rect x="30" y="10" width="4" height="8" rx="2" fill="white"/></svg>`,
-  gdrive:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8L9 36h10l16-28z" fill="#4285F4"/><path d="M9 36h32l-6-10H15z" fill="#34A853"/><path d="M35 26L25 8l-6 10 10 18 6-10z" fill="#FBBC05"/></svg>`,
+  gdrive:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8L9 36h10l16-28z" fill="#4285F4"/><path d="M9 36h32l-6-10H15z" fill="#34A853"/><path d="M35 26L25 8l-6 10 10 18 6-10z" fill="#FBBC05"/></svg>`,
   nfinance:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#00C73C"/><path d="M13 35V17l9 12V17h6v18l-9-12v12z" fill="white"/><path d="M31 17h6v18h-6z" fill="white" opacity="0.7"/></svg>`,
-  nmap:    `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><path d="M25 10c-5.5 0-10 4.5-10 10 0 7.5 10 20 10 20s10-12.5 10-20c0-5.5-4.5-10-10-10zm0 13.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z" fill="white"/></svg>`,
-  gmap:    `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 9 12 22 12 22s12-13 12-22c0-6.6-5.4-12-12-12z" fill="#EA4335"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 2.8.9 5.3 2.5 7.3L30 10.5A11.9 11.9 0 0025 8z" fill="#C5221F"/><circle cx="25" cy="20" r="4.5" fill="white"/><path d="M13 20c0 9 12 22 12 22l6-7.5C25.5 37 13 29 13 20z" fill="#FBBC05"/><path d="M37 20c0 2.3-.6 4.5-1.6 6.3L30 10.5A12 12 0 0137 20z" fill="#4285F4"/></svg>`,
-  github:  `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#24292F"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25 10a15 15 0 00-4.74 29.23c.75.14 1.02-.33 1.02-.72v-2.8c-4.15.9-5.03-2-5.03-2-.68-1.72-1.66-2.18-1.66-2.18-1.36-.93.1-.91.1-.91 1.5.1 2.3 1.54 2.3 1.54 1.33 2.28 3.5 1.62 4.36 1.24.13-.97.52-1.62.95-1.99-3.32-.38-6.8-1.66-6.8-7.38 0-1.63.58-2.96 1.54-4.01-.15-.38-.67-1.9.15-3.96 0 0 1.26-.4 4.12 1.54a14.3 14.3 0 017.5 0c2.86-1.95 4.11-1.54 4.11-1.54.82 2.06.3 3.58.15 3.96.96 1.05 1.54 2.38 1.54 4.01 0 5.74-3.5 7-6.83 7.37.54.46 1.01 1.38 1.01 2.78v4.12c0 .4.27.87 1.03.72A15 15 0 0025 10z" fill="white"/></svg>`,
+  nmap:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#03C75A"/><path d="M25 10c-5.5 0-10 4.5-10 10 0 7.5 10 20 10 20s10-12.5 10-20c0-5.5-4.5-10-10-10zm0 13.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z" fill="white"/></svg>`,
+  gmap:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#fff"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 9 12 22 12 22s12-13 12-22c0-6.6-5.4-12-12-12z" fill="#EA4335"/><path d="M25 8c-6.6 0-12 5.4-12 12 0 2.8.9 5.3 2.5 7.3L30 10.5A11.9 11.9 0 0025 8z" fill="#C5221F"/><circle cx="25" cy="20" r="4.5" fill="white"/><path d="M13 20c0 9 12 22 12 22l6-7.5C25.5 37 13 29 13 20z" fill="#FBBC05"/><path d="M37 20c0 2.3-.6 4.5-1.6 6.3L30 10.5A12 12 0 0137 20z" fill="#4285F4"/></svg>`,
+  github:`<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="#24292F"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25 10a15 15 0 00-4.74 29.23c.75.14 1.02-.33 1.02-.72v-2.8c-4.15.9-5.03-2-5.03-2-.68-1.72-1.66-2.18-1.66-2.18-1.36-.93.1-.91.1-.91 1.5.1 2.3 1.54 2.3 1.54 1.33 2.28 3.5 1.62 4.36 1.24.13-.97.52-1.62.95-1.99-3.32-.38-6.8-1.66-6.8-7.38 0-1.63.58-2.96 1.54-4.01-.15-.38-.67-1.9.15-3.96 0 0 1.26-.4 4.12 1.54a14.3 14.3 0 017.5 0c2.86-1.95 4.11-1.54 4.11-1.54.82 2.06.3 3.58.15 3.96.96 1.05 1.54 2.38 1.54 4.01 0 5.74-3.5 7-6.83 7.37.54.46 1.01 1.38 1.01 2.78v4.12c0 .4.27.87 1.03.72A15 15 0 0025 10z" fill="white"/></svg>`,
 };
 const EMOJI_FALLBACK=['🌟','📌','🔖','💡','🎯','⚡','🌈','🔥','📎','🗂'];
 const DEFAULT_SHORTCUTS=[
-  {name:"네이버",   url:"https://www.naver.com/",                    iconKey:"naver"},
-  {name:"구글",    url:"https://www.google.com/",                   iconKey:"google"},
-  {name:"서강메일", url:"https://mail.sogang.ac.kr/",                iconKey:"sogang"},
-  {name:"지메일",  url:"https://mail.google.com/",                  iconKey:"gmail"},
-  {name:"한솔에코", url:"https://echo.hansol.com/",                  iconKey:"hansol"},
-  {name:"캘린더",  url:"https://calendar.naver.com/",               iconKey:"calendar"},
-  {name:"구글독스", url:"https://docs.google.com/spreadsheets/u/0/", iconKey:"gdrive"},
-  {name:"네이버증권",url:"https://finance.naver.com/",               iconKey:"nfinance"},
-  {name:"네이버지도",url:"https://map.naver.com/p/",                 iconKey:"nmap"},
-  {name:"구글지도", url:"https://www.google.co.kr/maps",             iconKey:"gmap"},
-  {name:"깃허브",  url:"https://github.com/",                       iconKey:"github"},
+  {name:"네이버",  url:"https://www.naver.com/",                    iconKey:"naver"},
+  {name:"구글",   url:"https://www.google.com/",                   iconKey:"google"},
+  {name:"서강메일",url:"https://mail.sogang.ac.kr/",                iconKey:"sogang"},
+  {name:"지메일", url:"https://mail.google.com/",                  iconKey:"gmail"},
+  {name:"한솔에코",url:"https://echo.hansol.com/",                  iconKey:"hansol"},
+  {name:"캘린더", url:"https://calendar.naver.com/",               iconKey:"calendar"},
+  {name:"구글독스",url:"https://docs.google.com/spreadsheets/u/0/", iconKey:"gdrive"},
+  {name:"네이버증권",url:"https://finance.naver.com/",              iconKey:"nfinance"},
+  {name:"네이버지도",url:"https://map.naver.com/p/",                iconKey:"nmap"},
+  {name:"구글지도",url:"https://www.google.co.kr/maps",             iconKey:"gmap"},
+  {name:"깃허브", url:"https://github.com/",                       iconKey:"github"},
 ];
 
 let shortcuts=JSON.parse(localStorage.getItem('gw_u2_sc')||'null')||DEFAULT_SHORTCUTS;
-let editMode=false, dragSrc=null, dragMoved=false;
-let touchStartEl=null, touchStartIdx=null, touchTimer=null;
+let editMode=false,dragSrc=null,dragMoved=false;
+let touchStartEl=null,touchStartIdx=null,touchTimer=null;
 function saveShortcuts(){localStorage.setItem('gw_u2_sc',JSON.stringify(shortcuts));}
 
 function renderShortcuts(){
@@ -366,7 +305,6 @@ editToggle.addEventListener('click',()=>{
   renderShortcuts();
 });
 
-// ── 시계 ─────────────────────────────────────
 const DAY_KR=['일','월','화','수','목','금','토'];
 function updateClock(){
   const n=new Date();
@@ -375,9 +313,8 @@ function updateClock(){
   document.getElementById('tm').textContent=String(n.getMinutes()).padStart(2,'0');
   document.getElementById('ts').textContent=String(n.getSeconds()).padStart(2,'0');
 }
-setInterval(updateClock,1000); updateClock();
+setInterval(updateClock,1000);updateClock();
 
-// ── 검색 & AI ─────────────────────────────────
 function getQuery(){return document.getElementById(isMobile?'sq-m':'sq-d').value.trim();}
 document.getElementById('sq-d').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch('naver');});
 document.getElementById('sq-m').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch('naver');});
@@ -390,7 +327,6 @@ function doAI(ai){
 }
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.opacity='1';clearTimeout(t._tid);t._tid=setTimeout(()=>{t.style.opacity='0';},3500);}
 
-// ── 모달 ─────────────────────────────────────
 function closeModal(){document.getElementById('add-modal').classList.remove('show');document.getElementById('new-name').value='';document.getElementById('new-url').value='';}
 document.getElementById('btn-cancel').addEventListener('click',closeModal);
 document.getElementById('add-modal').addEventListener('click',e=>{if(e.target.id==='add-modal')closeModal();});
@@ -403,32 +339,31 @@ document.getElementById('btn-confirm-add').addEventListener('click',()=>{
   saveShortcuts();renderShortcuts();closeModal();
 });
 
-// ── 날씨 ─────────────────────────────────────
-// ── 날씨 SVG 아이콘 ───────────────────────────
-const WX_SVG = {
-  sunny:    `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="12" fill="#FFD600"/><g stroke="#FFD600" stroke-width="2.5" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180,x1=30+17*Math.cos(r),y1=30+17*Math.sin(r),x2=30+22*Math.cos(r),y2=30+22*Math.sin(r);return`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}).join('')}</g></svg>`,
-  partcloud:`<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="26" r="10" fill="#FFD600"/><g stroke="#FFD600" stroke-width="2" stroke-linecap="round">${[315,0,45].map(a=>{const r=a*Math.PI/180,x1=24+14*Math.cos(r),y1=26+14*Math.sin(r),x2=24+18*Math.cos(r),y2=26+18*Math.sin(r);return`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}).join('')}</g><path d="M18 38c-4 0-7-3-7-7s3-7 7-7c.5 0 1 .1 1.5.2C20.3 21.5 23 19 27 19c4.4 0 8 3.6 8 8h1c2.8 0 5 2.2 5 5s-2.2 5-5 5H18z" fill="#b0bec5"/></svg>`,
-  cloudy:   `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M14 38c-4.4 0-8-3.6-8-8s3.6-8 8-8c.6 0 1.1.1 1.7.2C16.8 18.5 20.5 15 25 15c5.5 0 10 4.5 10 10h1.5C40 25 44 29 44 33.5S40 42 35.5 42H14z" fill="#90a4ae"/></svg>`,
-  overcast: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 40c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 17.6 17.5 14 23 14c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#78909c"/></svg>`,
-  rain:     `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#78909c"/><g fill="#5b9bd5">${[[18,42],[26,44],[34,42],[22,50],[30,52]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="2" ry="3.5"/>`).join('')}</g></svg>`,
-  snow:     `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#90a4ae"/><g fill="#b3e5fc">${[[18,44],[26,44],[34,44],[22,52],[30,52]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.5"/>`).join('')}</g></svg>`,
-  thunder:  `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#546e7a"/><polygon points="26,36 20,48 25,48 22,58 34,44 28,44" fill="#FFD600"/></svg>`,
-  fog:      `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g stroke="#b0bec5" stroke-width="3" stroke-linecap="round">${[[8,20,38],[6,28,40],[10,36,36],[8,44,38]].map(([x,y,w])=>`<line x1="${x}" y1="${y}" x2="${x+w}" y2="${y}"/>`).join('')}</g></svg>`,
-  drizzle:  `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#90a4ae"/><g stroke="#5b9bd5" stroke-width="1.5" stroke-linecap="round">${[[18,42,20,47],[26,44,24,49],[34,42,32,47],[22,50,20,55],[30,50,28,55]].map(([x1,y1,x2,y2])=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`).join('')}</g></svg>`,
+const _CL1='<defs><radialGradient id="gc1" cx="32%" cy="26%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#deeffe"/><stop offset="100%" stop-color="#aed4f7"/></radialGradient></defs>';
+const _SUN='<defs><radialGradient id="gs" cx="38%" cy="30%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="65%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#d97706"/></radialGradient></defs>';
+const WX_SVG={
+  sunny:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">${_SUN}<circle cx="32" cy="32" r="16" fill="#fbbf24" opacity="0.2"/><g stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"><line x1="32" y1="5" x2="32" y2="12"/><line x1="32" y1="52" x2="32" y2="59"/><line x1="5" y1="32" x2="12" y2="32"/><line x1="52" y1="32" x2="59" y2="32"/><line x1="12" y1="12" x2="17" y2="17"/><line x1="52" y1="12" x2="47" y2="17"/><line x1="12" y1="52" x2="17" y2="47"/><line x1="52" y1="52" x2="47" y2="47"/></g><circle cx="32" cy="32" r="13" fill="url(#gs)"/><circle cx="27" cy="27" r="4.5" fill="white" opacity="0.38"/></svg>`,
+  partcloud:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">${_SUN}<defs><radialGradient id="pc1" cx="32%" cy="26%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#deeffe"/><stop offset="100%" stop-color="#aed4f7"/></radialGradient></defs><circle cx="42" cy="17" r="12" fill="url(#gs)"/><circle cx="38" cy="13" r="4" fill="white" opacity="0.38"/><ellipse cx="30" cy="44" rx="20" ry="10" fill="url(#pc1)"/><ellipse cx="20" cy="40" rx="13" ry="10" fill="url(#pc1)"/><ellipse cx="34" cy="38" rx="14" ry="10" fill="url(#pc1)"/><ellipse cx="46" cy="42" rx="9" ry="7" fill="url(#pc1)"/><ellipse cx="14" cy="42" rx="9" ry="7" fill="url(#pc1)"/><ellipse cx="21" cy="36" rx="7" ry="6" fill="white" opacity="0.45"/><ellipse cx="30" cy="52" rx="18" ry="4" fill="#88b8e0" opacity="0.22"/></svg>`,
+  cloudy:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="cl1" cx="32%" cy="26%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#deeffe"/><stop offset="100%" stop-color="#aed4f7"/></radialGradient></defs><ellipse cx="32" cy="42" rx="21" ry="10" fill="url(#cl1)"/><ellipse cx="21" cy="37" rx="14" ry="11" fill="url(#cl1)"/><ellipse cx="36" cy="36" rx="15" ry="11" fill="url(#cl1)"/><ellipse cx="48" cy="40" rx="10" ry="8" fill="url(#cl1)"/><ellipse cx="14" cy="40" rx="9" ry="7" fill="url(#cl1)"/><ellipse cx="22" cy="33" rx="8" ry="6.5" fill="white" opacity="0.45"/><ellipse cx="32" cy="50" rx="19" ry="4" fill="#88b8e0" opacity="0.22"/></svg>`,
+  overcast:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="oc1" cx="32%" cy="26%"><stop offset="0%" stop-color="#e8f4ff"/><stop offset="55%" stop-color="#bcd8f2"/><stop offset="100%" stop-color="#88b8e0"/></radialGradient></defs><ellipse cx="32" cy="42" rx="21" ry="10" fill="url(#oc1)"/><ellipse cx="21" cy="37" rx="14" ry="11" fill="url(#oc1)"/><ellipse cx="36" cy="36" rx="15" ry="11" fill="url(#oc1)"/><ellipse cx="48" cy="40" rx="10" ry="8" fill="url(#oc1)"/><ellipse cx="14" cy="40" rx="9" ry="7" fill="url(#oc1)"/><ellipse cx="22" cy="33" rx="8" ry="6.5" fill="white" opacity="0.35"/></svg>`,
+  drizzle:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="dr1" cx="32%" cy="26%"><stop offset="0%" stop-color="#deeffe"/><stop offset="55%" stop-color="#b0d0f0"/><stop offset="100%" stop-color="#80b0d8"/></radialGradient></defs><ellipse cx="32" cy="36" rx="21" ry="10" fill="url(#dr1)"/><ellipse cx="21" cy="31" rx="14" ry="11" fill="url(#dr1)"/><ellipse cx="36" cy="30" rx="15" ry="11" fill="url(#dr1)"/><ellipse cx="48" cy="34" rx="10" ry="8" fill="url(#dr1)"/><ellipse cx="14" cy="34" rx="9" ry="7" fill="url(#dr1)"/><ellipse cx="22" cy="27" rx="8" ry="6.5" fill="white" opacity="0.45"/><g stroke="#7badd4" stroke-width="1.8" stroke-linecap="round"><line x1="16" y1="47" x2="13" y2="55"/><line x1="24" y1="47" x2="21" y2="55"/><line x1="32" y1="47" x2="29" y2="55"/><line x1="40" y1="47" x2="37" y2="55"/><line x1="48" y1="47" x2="45" y2="55"/></g></svg>`,
+  rain:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rn1" cx="32%" cy="26%"><stop offset="0%" stop-color="#c8dff5"/><stop offset="55%" stop-color="#90bce0"/><stop offset="100%" stop-color="#60a0d0"/></radialGradient></defs><ellipse cx="32" cy="32" rx="21" ry="10" fill="url(#rn1)"/><ellipse cx="21" cy="27" rx="14" ry="11" fill="url(#rn1)"/><ellipse cx="36" cy="26" rx="15" ry="11" fill="url(#rn1)"/><ellipse cx="48" cy="30" rx="10" ry="8" fill="url(#rn1)"/><ellipse cx="14" cy="30" rx="9" ry="7" fill="url(#rn1)"/><ellipse cx="22" cy="23" rx="8" ry="6.5" fill="white" opacity="0.4"/><ellipse cx="32" cy="50" rx="20" ry="4" fill="#5b9bd5" opacity="0.18"/><g stroke="#4a8bbf" stroke-width="2.2" stroke-linecap="round"><line x1="16" y1="44" x2="12" y2="54"/><line x1="24" y1="44" x2="20" y2="54"/><line x1="32" y1="44" x2="28" y2="54"/><line x1="40" y1="44" x2="36" y2="54"/><line x1="48" y1="44" x2="44" y2="54"/></g></svg>`,
+  snow:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sn1" cx="32%" cy="26%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#deeffe"/><stop offset="100%" stop-color="#aed4f7"/></radialGradient></defs><ellipse cx="32" cy="32" rx="21" ry="10" fill="url(#sn1)"/><ellipse cx="21" cy="27" rx="14" ry="11" fill="url(#sn1)"/><ellipse cx="36" cy="26" rx="15" ry="11" fill="url(#sn1)"/><ellipse cx="48" cy="30" rx="10" ry="8" fill="url(#sn1)"/><ellipse cx="14" cy="30" rx="9" ry="7" fill="url(#sn1)"/><ellipse cx="22" cy="23" rx="8" ry="6.5" fill="white" opacity="0.48"/><g fill="#b8d8f0"><circle cx="16" cy="46" r="3"/><circle cx="15" cy="45" r="1" fill="white" opacity="0.7"/><circle cx="26" cy="48" r="3"/><circle cx="25" cy="47" r="1" fill="white" opacity="0.7"/><circle cx="36" cy="46" r="3"/><circle cx="35" cy="45" r="1" fill="white" opacity="0.7"/><circle cx="46" cy="48" r="3"/><circle cx="45" cy="47" r="1" fill="white" opacity="0.7"/><circle cx="20" cy="56" r="3"/><circle cx="19" cy="55" r="1" fill="white" opacity="0.7"/><circle cx="32" cy="57" r="3"/><circle cx="31" cy="56" r="1" fill="white" opacity="0.7"/><circle cx="42" cy="56" r="3"/><circle cx="41" cy="55" r="1" fill="white" opacity="0.7"/></g></svg>`,
+  thunder:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="th1" cx="32%" cy="26%"><stop offset="0%" stop-color="#b0c8e0"/><stop offset="55%" stop-color="#7898b8"/><stop offset="100%" stop-color="#507090"/></radialGradient><linearGradient id="lg1" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><ellipse cx="32" cy="30" rx="21" ry="10" fill="url(#th1)"/><ellipse cx="21" cy="25" rx="14" ry="11" fill="url(#th1)"/><ellipse cx="36" cy="24" rx="15" ry="11" fill="url(#th1)"/><ellipse cx="48" cy="28" rx="10" ry="8" fill="url(#th1)"/><ellipse cx="14" cy="28" rx="9" ry="7" fill="url(#th1)"/><ellipse cx="22" cy="21" rx="7" ry="6" fill="#c8d8e8" opacity="0.45"/><line x1="14" y1="42" x2="10" y2="52" stroke="#6090b8" stroke-width="1.8" stroke-linecap="round"/><line x1="50" y1="42" x2="46" y2="52" stroke="#6090b8" stroke-width="1.8" stroke-linecap="round"/><polygon points="31,38 24,51 31,51 22,63 40,48 32,48" fill="url(#lg1)"/><polygon points="31,38 24,51 31,51 22,63 40,48 32,48" fill="white" opacity="0.2"/></svg>`,
+  fog:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="fg1" cx="32%" cy="26%"><stop offset="0%" stop-color="#e8f4ff"/><stop offset="55%" stop-color="#bcd8f2"/><stop offset="100%" stop-color="#88b8e0"/></radialGradient></defs><ellipse cx="32" cy="26" rx="21" ry="10" fill="url(#fg1)"/><ellipse cx="21" cy="21" rx="14" ry="11" fill="url(#fg1)"/><ellipse cx="36" cy="20" rx="15" ry="11" fill="url(#fg1)"/><ellipse cx="22" cy="17" rx="8" ry="6.5" fill="white" opacity="0.45"/><g stroke="#b0c8e0" stroke-width="2.5" stroke-linecap="round"><line x1="8" y1="40" x2="52" y2="40"/><line x1="10" y1="48" x2="50" y2="48"/><line x1="14" y1="56" x2="46" y2="56"/></g></svg>`,
 };
 function getWxSvg(code){
-  if(code===0) return WX_SVG.sunny;
-  if(code<=2)  return WX_SVG.partcloud;
-  if(code===3) return WX_SVG.overcast;
-  if(code<=48) return WX_SVG.fog;
-  if(code<=55) return WX_SVG.drizzle;
-  if(code<=65) return WX_SVG.rain;
-  if(code<=77) return WX_SVG.snow;
-  if(code<=82) return WX_SVG.rain;
+  if(code===0)return WX_SVG.sunny;
+  if(code<=2)return WX_SVG.partcloud;
+  if(code===3)return WX_SVG.overcast;
+  if(code<=48)return WX_SVG.fog;
+  if(code<=55)return WX_SVG.drizzle;
+  if(code<=65)return WX_SVG.rain;
+  if(code<=77)return WX_SVG.snow;
+  if(code<=82)return WX_SVG.rain;
   return WX_SVG.thunder;
 }
 
-const WX_ICONS={0:'☀️',1:'🌤',2:'⛅',3:'🌥',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',85:'🌨',86:'❄️',95:'⛈',96:'⛈',99:'⛈'};
 const WX_DESC={0:'맑음',1:'대체로 맑음',2:'구름 조금',3:'흐림',45:'안개',48:'짙은 안개',51:'이슬비',53:'이슬비',55:'이슬비',61:'약한 비',63:'비',65:'강한 비',71:'약한 눈',73:'눈',75:'강한 눈',80:'소나기',82:'폭우',95:'뇌우',99:'뇌우'};
 let currentLocation=JSON.parse(localStorage.getItem('gw_location')||'null')||{name:'서울특별시',lat:37.5665,lon:126.9780};
 function saveLocation(loc){localStorage.setItem('gw_location',JSON.stringify(loc));}
@@ -436,11 +371,10 @@ function saveLocation(loc){localStorage.setItem('gw_location',JSON.stringify(loc
 function changeLocation(){
   const input=prompt('도시명을 입력하세요\n(예: 부산광역시, 제주시, 수원시)',currentLocation.name);
   if(!input||!input.trim())return;
-  const query=input.trim();
-  fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&accept-language=ko`)
+  fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(input.trim())}&format=json&limit=1&accept-language=ko`)
     .then(r=>r.json()).then(data=>{
-      if(!data||!data.length){alert(`"${query}" 위치를 찾을 수 없습니다.`);return;}
-      const {lat,lon,display_name}=data[0];
+      if(!data||!data.length){alert(`"${input.trim()}" 위치를 찾을 수 없습니다.`);return;}
+      const{lat,lon,display_name}=data[0];
       const shortName=display_name.split(',')[0].trim();
       currentLocation={name:shortName,lat:parseFloat(lat),lon:parseFloat(lon)};
       saveLocation(currentLocation);
@@ -454,34 +388,26 @@ async function loadWeather(){
   el.innerHTML='<div class="weather-loading">날씨 불러오는 중...</div>';
   document.getElementById('location-label').textContent=currentLocation.name;
   try{
-    // 어제 데이터 포함 요청
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
-    const yStr = yesterday.toISOString().slice(0,10);
-    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m,precipitation_probability,relativehumidity_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&timezone=Asia%2FSeoul&forecast_days=8&past_days=1`);
-    const d=await res.json(); const c=d.current,dl=d.daily,hl=d.hourly; const now=new Date();
+    const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
+    const yStr=yesterday.toISOString().slice(0,10);
+    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m,precipitation_probability,relativehumidity_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=8&past_days=1`);
+    const d=await res.json();const c=d.current,dl=d.daily,hl=d.hourly;const now=new Date();
     const nowHour=now.getHours();
     const todayStr=now.toISOString().slice(0,10);
-
-    // 현재 시간 이후 시간별 데이터 (2시간 간격, 최대 6포인트)
     const hourlyPoints=[];
     for(let h=nowHour;h<=Math.min(23,nowHour+10);h+=2){
       const idx=hl.time.findIndex(t=>t===`${todayStr}T${String(h).padStart(2,'0')}:00`);
-      if(idx!==-1) hourlyPoints.push({hour:h,temp:Math.round(hl.temperature_2m[idx]),rain:hl.precipitation_probability[idx]||0});
+      if(idx!==-1)hourlyPoints.push({hour:h,temp:Math.round(hl.temperature_2m[idx]),rain:hl.precipitation_probability[idx]||0});
     }
     const chartPoints=hourlyPoints.slice(0,6);
-
-    // 어제 같은 시간 기온
     const yIdx=hl.time.findIndex(t=>t===`${yStr}T${String(nowHour).padStart(2,'0')}:00`);
     const yTemp=yIdx!==-1?Math.round(hl.temperature_2m[yIdx]):null;
     const tempDiff=yTemp!==null?Math.round(c.temperature_2m)-yTemp:null;
-    const diffStr=tempDiff===null?'':(tempDiff>0?`<span style="color:#f87171">▲${tempDiff}°</span>`
-      :tempDiff<0?`<span style="color:#7baaf7">▼${Math.abs(tempDiff)}°</span>`
-      :`<span style="color:#8890aa">어제와 동일</span>`);
-
-    // 오늘 최저/최고
+    const diffStr=tempDiff===null?'':(tempDiff>0?`<span style="color:#f87171">▲${tempDiff}°</span>`:tempDiff<0?`<span style="color:#7baaf7">▼${Math.abs(tempDiff)}°</span>`:`<span style="color:#8890aa">어제와 동일</span>`);
     const todayIdx=dl.time.findIndex(t=>t===todayStr);
-    const todayHi=todayIdx!==-1?Math.round(dl.temperature_2m_max[todayIdx]):'--';
-    const todayLo=todayIdx!==-1?Math.round(dl.temperature_2m_min[todayIdx]):'--';
+    const todayRain=todayIdx!==-1?dl.precipitation_probability_max[todayIdx]:0;
+    const todayHumIdx=hl.time.findIndex(t=>t===`${todayStr}T${String(nowHour).padStart(2,'0')}:00`);
+    const todayHum=todayHumIdx!==-1?Math.round(hl.relativehumidity_2m[todayHumIdx]):null;
 
     function makeTempChart(points){
       if(!points.length)return'';
@@ -492,70 +418,30 @@ async function loadWeather(){
       const xs=points.map((_,i)=>pad+i*(W-pad*2)/(points.length-1||1));
       const ys=points.map(p=>H-14-((p.temp-mn)/range)*(H-32));
       let path=`M${xs[0]},${ys[0]}`;
-      for(let i=1;i<xs.length;i++) path+=` L${xs[i]},${ys[i]}`;
-      const dots=points.map((p,i)=>`
-        <circle cx="${xs[i]}" cy="${ys[i]}" r="3" fill="#f0c060"/>
-        <text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="9" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text>
-        <text x="${xs[i]}" y="${H+2}" text-anchor="middle" font-size="8" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>
-        <text x="${xs[i]}" y="${H+12}" text-anchor="middle" font-size="8" fill="#7baaf7" font-family="sans-serif">${p.rain>0?p.rain+'%':''}</text>
-      `).join('');
-      return`<svg viewBox="0 0 ${W} ${H+16}" width="100%" style="display:block;margin-top:4px;">
-        <path d="${path}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5"/>
-        ${dots}
-      </svg>`;
+      for(let i=1;i<xs.length;i++)path+=` L${xs[i]},${ys[i]}`;
+      const dots=points.map((p,i)=>`<circle cx="${xs[i]}" cy="${ys[i]}" r="3" fill="#f0c060"/><text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="9" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text><text x="${xs[i]}" y="${H+2}" text-anchor="middle" font-size="8" fill="#8890aa" font-family="sans-serif">${p.hour}시</text><text x="${xs[i]}" y="${H+12}" text-anchor="middle" font-size="8" fill="#7baaf7" font-family="sans-serif">${p.rain>0?p.rain+'%':''}</text>`).join('');
+      return`<svg viewBox="0 0 ${W} ${H+16}" width="100%" style="display:block;margin-top:4px;"><path d="${path}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5"/>${dots}</svg>`;
     }
 
-    // 오늘 강수확률·습도
-    const todayRain = todayIdx!==-1 ? dl.precipitation_probability_max[todayIdx] : 0;
-    const todayHumIdx = hl.time.findIndex(t=>t===`${todayStr}T${String(nowHour).padStart(2,'0')}:00`);
-    const todayHum = todayHumIdx!==-1 ? Math.round(hl.relativehumidity_2m[todayHumIdx]) : null;
+    let html=`<div class="weather-scroll"><div class="wx-card today" style="min-width:${isMobile?'160px':'180px'};max-width:${isMobile?'200px':'220px'};"><div style="display:flex;align-items:center;gap:10px;width:100%;"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:82px;"><div style="color:#8890aa;font-size:11px;white-space:nowrap;">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div><div style="width:53px;height:53px;">${getWxSvg(c.weathercode)}</div><div style="font-size:18px;font-weight:700;color:#f0f2f8;">${Math.round(c.temperature_2m)}°C</div><div style="font-size:10px;">${diffStr}</div><div style="font-size:10px;display:flex;gap:6px;justify-content:center;white-space:nowrap;"><span>☂️${todayRain}%</span>${todayHum!==null?`<span>💧${todayHum}%</span>`:''}</div></div><div style="flex:1;min-width:0;">${makeTempChart(chartPoints)}</div></div></div>`;
 
-    let html=`<div class="weather-scroll">
-      <div class="wx-card today" style="min-width:234px;max-width:286px;">
-        <div style="display:flex;align-items:center;gap:10px;width:100%;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:82px;">
-                <div style="color:#8890aa;font-size:11px;white-space:nowrap;">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
-            <div style="width:53px;height:53px;">${getWxSvg(c.weathercode)}</div>
-            <div style="font-size:18px;font-weight:700;color:#f0f2f8;">${Math.round(c.temperature_2m)}°C</div>
-            <div style="font-size:10px;">${diffStr}</div>
-            <div style="font-size:10px;display:flex;gap:6px;justify-content:center;align-items:center;">
-              <span title="강수확률">☂️${todayRain}%</span>
-              ${todayHum!==null?`<span title="습도">💧${todayHum}%</span>`:''}
-            </div>
-          </div>
-          <div style="flex:1;min-width:0;">${makeTempChart(chartPoints)}</div>
-        </div>
-      </div>`;
-
-    // 내일 이후
     const startIdx=dl.time.findIndex(t=>t>todayStr);
     for(let i=startIdx;i<startIdx+7&&i<dl.time.length;i++){
       const dt=new Date(dl.time[i]);
-      const lbl=i===startIdx?'내일':DAY_KR[dt.getDay()];
       const wc=dl.weathercode[i];
       const hi=Math.round(dl.temperature_2m_max[i]);
       const lo=Math.round(dl.temperature_2m_min[i]);
       const rain=dl.precipitation_probability_max[i];
-      // 해당 날짜 정오(12시) 습도
       const humIdx=hl.time.findIndex(t=>t===`${dl.time[i]}T12:00`);
       const hum=humIdx!==-1?Math.round(hl.relativehumidity_2m[humIdx]):null;
-      html+=`<div class="wx-card" style="gap:4px;">
-        <div style="color:#8890aa;font-size:11px;white-space:nowrap;">${dt.getMonth()+1}/${dt.getDate()} (${DAY_KR[dt.getDay()]})</div>
-        <div style="width:53px;height:53px;">${getWxSvg(wc)}</div>
-        <div style="font-size:18px;font-weight:700;"><span style="color:#f87171">${hi}°</span> / <span style="color:#7baaf7">${lo}°</span></div>
-        <div style="font-size:10px;color:#8890aa;">${WX_DESC[wc]||''}</div>
-        <div style="font-size:10px;display:flex;gap:6px;justify-content:center;align-items:center;">
-          <span title="강수확률">☂️${rain}%</span>
-          ${hum!==null?`<span title="습도">💧${hum}%</span>`:''}
-        </div>
-      </div>`;
+      html+=`<div class="wx-card" style="gap:4px;"><div style="color:#8890aa;font-size:11px;white-space:nowrap;">${dt.getMonth()+1}/${dt.getDate()} (${DAY_KR[dt.getDay()]})</div><div style="width:53px;height:53px;">${getWxSvg(wc)}</div><div style="font-size:18px;font-weight:700;white-space:nowrap;"><span style="color:#f87171">${hi}°</span> / <span style="color:#7baaf7">${lo}°</span></div><div style="font-size:10px;color:#8890aa;">${WX_DESC[wc]||''}</div><div style="font-size:10px;display:flex;gap:6px;justify-content:center;white-space:nowrap;"><span>☂️${rain}%</span>${hum!==null?`<span>💧${hum}%</span>`:''}</div></div>`;
     }
     html+=`</div>`;
     el.innerHTML=html;
   }catch(e){el.innerHTML='<div class="weather-loading">날씨를 불러오지 못했습니다.</div>';}
 }
 
-renderShortcuts(); loadWeather();
+renderShortcuts();loadWeather();
 </script>
 </body>
 </html>
