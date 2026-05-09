@@ -395,6 +395,30 @@ document.getElementById('btn-confirm-add').addEventListener('click',()=>{
 });
 
 // ── 날씨 ─────────────────────────────────────
+// ── 날씨 SVG 아이콘 ───────────────────────────
+const WX_SVG = {
+  sunny:    `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="12" fill="#FFD600"/><g stroke="#FFD600" stroke-width="2.5" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180,x1=30+17*Math.cos(r),y1=30+17*Math.sin(r),x2=30+22*Math.cos(r),y2=30+22*Math.sin(r);return`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}).join('')}</g></svg>`,
+  partcloud:`<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="26" r="10" fill="#FFD600"/><g stroke="#FFD600" stroke-width="2" stroke-linecap="round">${[315,0,45].map(a=>{const r=a*Math.PI/180,x1=24+14*Math.cos(r),y1=26+14*Math.sin(r),x2=24+18*Math.cos(r),y2=26+18*Math.sin(r);return`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}).join('')}</g><path d="M18 38c-4 0-7-3-7-7s3-7 7-7c.5 0 1 .1 1.5.2C20.3 21.5 23 19 27 19c4.4 0 8 3.6 8 8h1c2.8 0 5 2.2 5 5s-2.2 5-5 5H18z" fill="#b0bec5"/></svg>`,
+  cloudy:   `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M14 38c-4.4 0-8-3.6-8-8s3.6-8 8-8c.6 0 1.1.1 1.7.2C16.8 18.5 20.5 15 25 15c5.5 0 10 4.5 10 10h1.5C40 25 44 29 44 33.5S40 42 35.5 42H14z" fill="#90a4ae"/></svg>`,
+  overcast: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 40c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 17.6 17.5 14 23 14c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#78909c"/></svg>`,
+  rain:     `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#78909c"/><g fill="#5b9bd5">${[[18,42],[26,44],[34,42],[22,50],[30,52]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="2" ry="3.5"/>`).join('')}</g></svg>`,
+  snow:     `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#90a4ae"/><g fill="#b3e5fc">${[[18,44],[26,44],[34,44],[22,52],[30,52]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.5"/>`).join('')}</g></svg>`,
+  thunder:  `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#546e7a"/><polygon points="26,36 20,48 25,48 22,58 34,44 28,44" fill="#FFD600"/></svg>`,
+  fog:      `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g stroke="#b0bec5" stroke-width="3" stroke-linecap="round">${[[8,20,38],[6,28,40],[10,36,36],[8,44,38]].map(([x,y,w])=>`<line x1="${x}" y1="${y}" x2="${x+w}" y2="${y}"/>`).join('')}</g></svg>`,
+  drizzle:  `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M10 34c-5 0-9-4-9-9s4-9 9-9c.7 0 1.3.1 2 .3C13 11.6 17.5 8 23 8c6.6 0 12 5.4 12 12h2c3.9 0 7 3.1 7 7s-3.1 7-7 7H10z" fill="#90a4ae"/><g stroke="#5b9bd5" stroke-width="1.5" stroke-linecap="round">${[[18,42,20,47],[26,44,24,49],[34,42,32,47],[22,50,20,55],[30,50,28,55]].map(([x1,y1,x2,y2])=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`).join('')}</g></svg>`,
+};
+function getWxSvg(code){
+  if(code===0) return WX_SVG.sunny;
+  if(code<=2)  return WX_SVG.partcloud;
+  if(code===3) return WX_SVG.overcast;
+  if(code<=48) return WX_SVG.fog;
+  if(code<=55) return WX_SVG.drizzle;
+  if(code<=65) return WX_SVG.rain;
+  if(code<=77) return WX_SVG.snow;
+  if(code<=82) return WX_SVG.rain;
+  return WX_SVG.thunder;
+}
+
 const WX_ICONS={0:'☀️',1:'🌤',2:'⛅',3:'🌥',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',85:'🌨',86:'❄️',95:'⛈',96:'⛈',99:'⛈'};
 const WX_DESC={0:'맑음',1:'대체로 맑음',2:'구름 조금',3:'흐림',45:'안개',48:'짙은 안개',51:'이슬비',53:'이슬비',55:'이슬비',61:'약한 비',63:'비',65:'강한 비',71:'약한 눈',73:'눈',75:'강한 눈',80:'소나기',82:'폭우',95:'뇌우',99:'뇌우'};
 let currentLocation=JSON.parse(localStorage.getItem('gw_location')||'null')||{name:'서울특별시',lat:37.5665,lon:126.9780};
@@ -421,43 +445,103 @@ async function loadWeather(){
   el.innerHTML='<div class="weather-loading">날씨 불러오는 중...</div>';
   document.getElementById('location-label').textContent=currentLocation.name;
   try{
-    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=8`);
+    // 어제 데이터 포함 요청
+    const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+    const yStr = yesterday.toISOString().slice(0,10);
+    const res=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLocation.lat}&longitude=${currentLocation.lon}&current=temperature_2m,weathercode,apparent_temperature&hourly=temperature_2m,precipitation_probability,relativehumidity_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&timezone=Asia%2FSeoul&forecast_days=8&past_days=1`);
     const d=await res.json(); const c=d.current,dl=d.daily,hl=d.hourly; const now=new Date();
     const nowHour=now.getHours();
     const todayStr=now.toISOString().slice(0,10);
-    const hourlyTemps=[];
-    for(let h=0;h<24;h+=2){const idx=hl.time.findIndex(t=>t===`${todayStr}T${String(h).padStart(2,'0')}:00`);if(idx!==-1)hourlyTemps.push({hour:h,temp:Math.round(hl.temperature_2m[idx])});}
-    const relevantHours=hourlyTemps.filter(p=>p.hour>=Math.max(0,nowHour-4)&&p.hour<=Math.min(23,nowHour+8)).slice(0,6);
+
+    // 현재 시간 이후 시간별 데이터 (2시간 간격, 최대 6포인트)
+    const hourlyPoints=[];
+    for(let h=nowHour;h<=Math.min(23,nowHour+10);h+=2){
+      const idx=hl.time.findIndex(t=>t===`${todayStr}T${String(h).padStart(2,'0')}:00`);
+      if(idx!==-1) hourlyPoints.push({hour:h,temp:Math.round(hl.temperature_2m[idx]),rain:hl.precipitation_probability[idx]||0});
+    }
+    const chartPoints=hourlyPoints.slice(0,6);
+
+    // 어제 같은 시간 기온
+    const yIdx=hl.time.findIndex(t=>t===`${yStr}T${String(nowHour).padStart(2,'0')}:00`);
+    const yTemp=yIdx!==-1?Math.round(hl.temperature_2m[yIdx]):null;
+    const tempDiff=yTemp!==null?Math.round(c.temperature_2m)-yTemp:null;
+    const diffStr=tempDiff===null?'':(tempDiff>0?`<span style="color:#f87171">▲${tempDiff}°</span>`
+      :tempDiff<0?`<span style="color:#7baaf7">▼${Math.abs(tempDiff)}°</span>`
+      :`<span style="color:#8890aa">어제와 동일</span>`);
+
+    // 오늘 최저/최고
+    const todayIdx=dl.time.findIndex(t=>t===todayStr);
+    const todayHi=todayIdx!==-1?Math.round(dl.temperature_2m_max[todayIdx]):'--';
+    const todayLo=todayIdx!==-1?Math.round(dl.temperature_2m_min[todayIdx]):'--';
 
     function makeTempChart(points){
       if(!points.length)return'';
-      const W=130,H=70,pad=10;
+      const W=130,H=70,pad=12;
       const temps=points.map(p=>p.temp);
       const mn=Math.min(...temps),mx=Math.max(...temps);
       const range=mx-mn||1;
       const xs=points.map((_,i)=>pad+i*(W-pad*2)/(points.length-1||1));
       const ys=points.map(p=>H-14-((p.temp-mn)/range)*(H-32));
-      const dots=points.map((p,i)=>`<circle cx="${xs[i]}" cy="${ys[i]}" r="3.5" fill="#f0c060"/><text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="10" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text><text x="${xs[i]}" y="${H+4}" text-anchor="middle" font-size="9" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>`).join('');
-      return`<svg viewBox="0 0 ${W} ${H+8}" width="100%" style="display:block;margin-top:6px;"><polyline points="${xs.map((x,i)=>`${x},${ys[i]}`).join(' ')}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5" stroke-linejoin="round"/>${dots}</svg>`;
+      let path=`M${xs[0]},${ys[0]}`;
+      for(let i=1;i<xs.length;i++) path+=` L${xs[i]},${ys[i]}`;
+      const dots=points.map((p,i)=>`
+        <circle cx="${xs[i]}" cy="${ys[i]}" r="3" fill="#f0c060"/>
+        <text x="${xs[i]}" y="${ys[i]-7}" text-anchor="middle" font-size="9" fill="#f0f2f8" font-family="sans-serif">${p.temp}°</text>
+        <text x="${xs[i]}" y="${H+2}" text-anchor="middle" font-size="8" fill="#8890aa" font-family="sans-serif">${p.hour}시</text>
+        <text x="${xs[i]}" y="${H+12}" text-anchor="middle" font-size="8" fill="#7baaf7" font-family="sans-serif">${p.rain>0?p.rain+'%':''}</text>
+      `).join('');
+      return`<svg viewBox="0 0 ${W} ${H+16}" width="100%" style="display:block;margin-top:4px;">
+        <path d="${path}" fill="none" stroke="rgba(240,192,96,0.5)" stroke-width="1.5"/>
+        ${dots}
+      </svg>`;
     }
+
+    // 오늘 강수확률·습도
+    const todayRain = todayIdx!==-1 ? dl.precipitation_probability_max[todayIdx] : 0;
+    const todayHumIdx = hl.time.findIndex(t=>t===`${todayStr}T${String(nowHour).padStart(2,'0')}:00`);
+    const todayHum = todayHumIdx!==-1 ? Math.round(hl.relativehumidity_2m[todayHumIdx]) : null;
 
     let html=`<div class="weather-scroll">
       <div class="wx-card today" style="min-width:234px;max-width:286px;">
-        <div style="display:flex;align-items:center;gap:14px;width:100%;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;">
-            <div class="wx-label">오늘</div>
-            <div class="wx-date">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
-            <div style="font-size:36px;margin:4px 0;cursor:pointer;" onclick="window.open('https://weather.naver.com','_blank','noopener')" title="네이버 날씨">${WX_ICONS[c.weathercode]||'🌡'}</div>
-            <div class="wx-temp-hi" style="font-size:20px;">${Math.round(c.temperature_2m)}°C</div>
-            <div class="wx-desc" style="font-size:11px;">${WX_DESC[c.weathercode]||''}</div>
-            <div class="wx-temp-lo" style="font-size:11px;margin-top:2px;">체감 ${Math.round(c.apparent_temperature)}°</div>
+        <div style="display:flex;align-items:center;gap:10px;width:100%;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:82px;">
+            <div style="font-weight:700;color:#8890aa;font-size:12px;">오늘</div>
+            <div style="color:#445;font-size:11px;">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
+            <div style="width:53px;height:53px;">${getWxSvg(c.weathercode)}</div>
+            <div style="font-size:18px;font-weight:700;color:#f0f2f8;">${Math.round(c.temperature_2m)}°C</div>
+            <div style="font-size:10px;">${diffStr}</div>
+            <div style="font-size:10px;display:flex;gap:6px;justify-content:center;align-items:center;">
+              <span title="강수확률">☂️${todayRain}%</span>
+              ${todayHum!==null?`<span title="습도">💧${todayHum}%</span>`:''}
+            </div>
           </div>
-          <div style="flex:1;min-width:0;">${makeTempChart(relevantHours)}</div>
+          <div style="flex:1;min-width:0;">${makeTempChart(chartPoints)}</div>
         </div>
       </div>`;
-    for(let i=1;i<8;i++){
-      const dt=new Date(dl.time[i]);const lbl=i===1?'내일':DAY_KR[dt.getDay()];const wc=dl.weathercode[i];
-      html+=`<div class="wx-card"><div class="wx-label">${lbl}</div><div class="wx-date">${dt.getMonth()+1}/${dt.getDate()}</div><div class="wx-emoji">${WX_ICONS[wc]||'🌡'}</div><div class="wx-temp-hi">${Math.round(dl.temperature_2m_max[i])}°</div><div class="wx-temp-lo">${Math.round(dl.temperature_2m_min[i])}°</div><div class="wx-desc">${WX_DESC[wc]||''}</div><div class="wx-rain">💧${dl.precipitation_probability_max[i]}%</div></div>`;
+
+    // 내일 이후
+    const startIdx=dl.time.findIndex(t=>t>todayStr);
+    for(let i=startIdx;i<startIdx+7&&i<dl.time.length;i++){
+      const dt=new Date(dl.time[i]);
+      const lbl=i===startIdx?'내일':DAY_KR[dt.getDay()];
+      const wc=dl.weathercode[i];
+      const hi=Math.round(dl.temperature_2m_max[i]);
+      const lo=Math.round(dl.temperature_2m_min[i]);
+      const rain=dl.precipitation_probability_max[i];
+      // 해당 날짜 정오(12시) 습도
+      const humIdx=hl.time.findIndex(t=>t===`${dl.time[i]}T12:00`);
+      const hum=humIdx!==-1?Math.round(hl.relativehumidity_2m[humIdx]):null;
+      html+=`<div class="wx-card" style="gap:4px;">
+        <div style="font-weight:700;color:#8890aa;font-size:12px;">${lbl}</div>
+        <div style="color:#445;font-size:11px;">${dt.getMonth()+1}/${dt.getDate()} (${DAY_KR[dt.getDay()]})</div>
+        <div style="width:53px;height:53px;">${getWxSvg(wc)}</div>
+        <div style="font-size:18px;font-weight:700;"><span style="color:#f87171">${hi}°</span> / <span style="color:#7baaf7">${lo}°</span></div>
+        <div style="font-size:10px;color:#8890aa;">${WX_DESC[wc]||''}</div>
+        <div style="font-size:10px;display:flex;gap:6px;justify-content:center;align-items:center;">
+          <span title="강수확률">☂️${rain}%</span>
+          ${hum!==null?`<span title="습도">💧${hum}%</span>`:''}
+        </div>
+      </div>`;
     }
     html+=`</div>`;
     el.innerHTML=html;
