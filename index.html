@@ -150,7 +150,7 @@ body.mobile .btn-perplexity{background:#20b2aa;}
 body.mobile .shortcuts-layer{padding:12px 10px;margin-bottom:12px;}
 body.mobile .edit-toggle{display:block;text-align:right;font-size:12px;color:#556;margin-bottom:10px;cursor:pointer;}
 body.mobile .edit-toggle.active{color:#7baaf7;}
-body.mobile .shortcuts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;}
+body.mobile .shortcuts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px 4px;}
 body.mobile .shortcut-item{gap:5px;-webkit-user-select:none;}
 body.mobile .shortcut-wrap{width:56px;height:56px;}
 body.mobile .shortcut-icon{width:56px;height:56px;border-radius:14px;}
@@ -505,8 +505,7 @@ async function loadWeather(){
       <div class="wx-card today" style="min-width:234px;max-width:286px;">
         <div style="display:flex;align-items:center;gap:10px;width:100%;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:82px;">
-            <div style="font-weight:700;color:#8890aa;font-size:12px;">오늘</div>
-            <div style="color:#445;font-size:11px;">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
+                <div style="color:#8890aa;font-size:11px;white-space:nowrap;">${now.getMonth()+1}/${now.getDate()} (${DAY_KR[now.getDay()]})</div>
             <div style="width:53px;height:53px;">${getWxSvg(c.weathercode)}</div>
             <div style="font-size:18px;font-weight:700;color:#f0f2f8;">${Math.round(c.temperature_2m)}°C</div>
             <div style="font-size:10px;">${diffStr}</div>
@@ -532,8 +531,7 @@ async function loadWeather(){
       const humIdx=hl.time.findIndex(t=>t===`${dl.time[i]}T12:00`);
       const hum=humIdx!==-1?Math.round(hl.relativehumidity_2m[humIdx]):null;
       html+=`<div class="wx-card" style="gap:4px;">
-        <div style="font-weight:700;color:#8890aa;font-size:12px;">${lbl}</div>
-        <div style="color:#445;font-size:11px;">${dt.getMonth()+1}/${dt.getDate()} (${DAY_KR[dt.getDay()]})</div>
+        <div style="color:#8890aa;font-size:11px;white-space:nowrap;">${dt.getMonth()+1}/${dt.getDate()} (${DAY_KR[dt.getDay()]})</div>
         <div style="width:53px;height:53px;">${getWxSvg(wc)}</div>
         <div style="font-size:18px;font-weight:700;"><span style="color:#f87171">${hi}°</span> / <span style="color:#7baaf7">${lo}°</span></div>
         <div style="font-size:10px;color:#8890aa;">${WX_DESC[wc]||''}</div>
